@@ -1,0 +1,206 @@
+<div>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'Create New Podcast'" [noActions]="true" class="table-card">
+        <div class="row">
+          <div class="col-12">
+            <button mat-raised-button class="app-button" (click)="openNewPodcastModal()">New</button>
+          </div>
+        </div>
+
+      </app-card>
+    </div>
+  </div>
+
+  <!--Saved Podcast-->
+  <!--<div class="row mt-lg-4">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'Podcast Saved'" [noActions]="true" class="table-card">
+        <ag-grid-angular
+          class="{{appliedThemeClassOnTable}}"
+          [rowData]="rowData"
+          [columnDefs]="columnDefsMain"
+          [defaultColDef]="defaultColDef"
+          [floatingFilter]="true"
+          [animateRows]="true"
+          [pagination]="true"
+          [paginationPageSize]="selectedRowsPerPage"
+          (gridReady)="onGridReady($event)"
+          (firstDataRendered)="onFirstDataRendered($event)">
+        </ag-grid-angular>
+      </app-card>
+    </div>
+  </div>
+
+  &lt;!&ndash;Published Podcast&ndash;&gt;
+  <div class="row mt-lg-4">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'Podcast Published'" [noActions]="true" class="table-card">
+        <ag-grid-angular
+          class="{{appliedThemeClassOnTable}}"
+          [rowData]="rowDataPublished"
+          [columnDefs]="columnDefsPublished"
+          [defaultColDef]="defaultColDef"
+          [floatingFilter]="true"
+          [animateRows]="true"
+          [pagination]="true"
+          [paginationPageSize]="selectedRowsPerPage"
+          (gridReady)="onGridReady($event)"
+          (firstDataRendered)="onFirstDataRendered($event)">
+        </ag-grid-angular>
+      </app-card>
+    </div>
+  </div>
+
+  &lt;!&ndash;Deleted Podcast&ndash;&gt;
+  <div class="row mt-lg-4">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'Podcast Deleted'" [noActions]="true" class="table-card">
+        <ag-grid-angular
+          class="{{appliedThemeClassOnTable}}"
+          [rowData]="rowDataDeleted"
+          [columnDefs]="columnDefsDeleted"
+          [defaultColDef]="defaultColDef"
+          [floatingFilter]="true"
+          [animateRows]="true"
+          [pagination]="true"
+          [paginationPageSize]="selectedRowsPerPage"
+          (gridReady)="onGridReady($event)"
+          (firstDataRendered)="onFirstDataRendered($event)">
+        </ag-grid-angular>
+      </app-card>
+    </div>
+  </div>-->
+</div>
+
+<div class="modal fade small-modal" bsModal #modal="bs-modal"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-events-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">Publish</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mt-4">
+          <div class="col-12 text-center">
+            <h6>Publish Podcast to the Research Portal</h6>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2 modal-action-row">
+        <div class="col-12 text-center">
+          <button mat-raised-button class="app-button btn btn-sm" (click)="publishPodcast()">Yes</button>
+          <button mat-raised-button class="app-button btn btn-sm ml-lg-5" (click)="modal.hide()">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade small-modal" bsModal #deleteModal="bs-modal"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-events-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">Delete</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mt-4">
+          <div class="col-12 text-center">
+            <h6>Permanently Delete Podcast?</h6>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2 modal-action-row">
+        <div class="col-12 text-center">
+          <button mat-raised-button class="app-button btn btn-sm" (click)="deletePodcast()">Yes</button>
+          <button mat-raised-button class="app-button btn btn-sm ml-lg-5" (click)="deleteModal.hide()">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #newPodcastModal="bs-modal"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-events-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">New Podcast</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="newPodcastModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mt-2">
+          <div class="col-12">
+            <input type="text" class="app-text-box" [(ngModel)]="selectedPodcast.headline"
+              placeholder="Headline"   />
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <input type="text" class="app-text-box" [(ngModel)]="selectedPodcast.sectors"
+                   placeholder="Summary for Research Central"   />
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <textarea type="text" class="app-text-box" [(ngModel)]="selectedPodcast.analyst" rows="2"
+                   placeholder="Keywords (Analysts, tickers, company names, and any other Relevant Keywords." >
+            </textarea>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-12">
+            <input type="file" #uploadedImage accept="image/*"
+                   (change)="handleUpload($event.target.files)" [name]="'Browse...'"/>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-12 align-right">
+            <button mat-raised-button class="app-button btn btn-sm" (click)="uploadDocument()">Upload</button>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-12 align-right">
+            <span class="app-warning-text" [ngClass]="{'hidden': !showUploadWarning}">Please wait while the upload is in progress...</span>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-12">
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="sectorOrIndustry">
+              <mat-radio-button class="pr-2 app-radio mr-lg-4" value="1" [checked]="true">Company Podcast</mat-radio-button>
+              <mat-radio-button class="app-radio" value="2">Industry Podcast</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-12">
+            <input type="text" class="app-text-box" [(ngModel)]="selectedPodcast.ffff"
+                   placeholder="Publication ID for related report"   />
+          </div>
+        </div>
+
+      </div>
+      <div class="row mt-2 modal-action-row">
+        <div class="col-12">
+          <button mat-raised-button class="app-button mr-2">Preview</button>
+          <button mat-raised-button class="app-button mr-2" (click)="savePodCast()">Save</button>
+          <button mat-raised-button class="app-button mr-2" (click)="newPodcastModal.hide()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

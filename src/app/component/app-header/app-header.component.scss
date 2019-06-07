@@ -1,0 +1,121 @@
+@import "../../../styles/variable";
+
+.app-header ::ng-deep{
+  .mat-list-item{
+    height: 40px;
+    &.active{
+      .mat-list-item-content {
+        @extend .nav-active;
+      }
+    }
+  }
+  .mat-list-item-content{
+    //justify-content: center;
+    margin: 6px 0;
+    padding: 0 5px !important;
+    font-size: 13px;
+
+
+    &:hover{
+      @extend .nav-active;
+    }
+  }
+  .sidenav-header{
+    margin-bottom: 30px;
+    margin-top: 25px;
+    text-align: center;
+    .heading{
+      font-size: 16px;
+    }
+    .sidenav-divider{
+      margin-top: 25px;
+
+      height: 2px;
+      @extend .nav-active;
+    }
+  }
+
+  .sidenav-toggle{
+    cursor: pointer;
+    padding: 1px 10px 0 15px;
+    font-size: 16px;
+    .hidden{
+      display: none;
+    }
+  }
+}
+
+.nav-active{
+  background: $CIBCRed;
+  color: white;
+  /*-webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);*/
+  -webkit-box-shadow: 0 15px 8px -9px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 15px 8px -9px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 15px 8px -9px rgba(0, 0, 0, 0.25);
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .header-bar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+}
+
+.example-is-mobile {
+  .example-toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+  }
+}
+
+.mat-drawer{
+  position: fixed;
+  top: 60px;
+  min-width: 250px;
+  //max-width: 250px;
+  .mat-nav-list{
+    padding: 0 16px;
+  }
+}
+
+.example-app-name {
+  margin-left: 8px;
+  font-size: 18px;
+}
+
+.example-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+
+}
+
+.example-is-mobile .example-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+
+}
+
+.mat-toolbar.mat-primary {
+  background: $CIBCRed;
+  align-items: start;
+  padding: 10px 5px;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: 140px;
+}
+

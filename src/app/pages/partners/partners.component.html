@@ -1,0 +1,166 @@
+<div>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'Partners'" [noActions]="true" class="table-card">
+        <div class="row card-action-row">
+          <div class="col-12">
+            <button mat-raised-button class="app-button" (click)="addNewPartner()">Add Partner</button>
+          </div>
+        </div>
+        <ag-grid-angular
+          class="{{appliedThemeClassOnTable}}"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="defaultColDef"
+          [floatingFilter]="true"
+          [animateRows]="true"
+          [pagination]="true"
+          [paginationPageSize]="selectedRowsPerPage"
+          (gridReady)="onGridReady($event)"
+          (firstDataRendered)="onFirstDataRendered($event)">
+        </ag-grid-angular>
+      </app-card>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #modal="bs-modal"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-events-name">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">{{modalTitle}}</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--Partner Information-->
+        <div class="row ">
+          <div class="col-12 section-heading">
+            Partner Information
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3 center-h">
+            Organization/Partner Name:
+          </div>
+          <div class="col-4 pl-0">
+            <select class="form-control form-control-sm">
+              <option>Select Partner</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3 align-right">
+            Website URL:
+          </div>
+          <div class="col-4 pl-0 pr-0">
+            <input type="text" class="app-text-box" [(ngModel)]="selectedPartner.footnote"/>
+          </div>
+          <div class="col-2">
+            Active:
+            <mat-checkbox class="example-margin app-check-box mt-2 pl-2 " [(ngModel)]="active"></mat-checkbox>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3 align-right">
+            Description:
+          </div>
+          <div class="col-8 pl-0">
+            <textarea type="text" class="form-control" rows="5"></textarea>
+          </div>
+        </div>
+
+        <!--Connection Information-->
+        <div class="row mt-4">
+          <div class="col-12 section-heading">
+            Connection Information
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3 align-right">
+            Host Name:
+          </div>
+          <div class="col-4 pl-0 pr-0">
+            <input type="text" class="app-text-box" [(ngModel)]="selectedPartner.footnote"/>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3 align-right">
+            User ID:
+          </div>
+          <div class="col-2 pl-0 pr-0">
+            <input type="text" class="app-text-box" [(ngModel)]="selectedPartner.footnote"/>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3 align-right">
+            Password:
+          </div>
+          <div class="col-2 pl-0 pr-0">
+            <input type="text" class="app-text-box" [(ngModel)]="selectedPartner.footnote"/>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3 align-right">
+            Folder/Path:
+          </div>
+          <div class="col-2 pl-0 pr-0">
+            <input type="text" class="app-text-box" [(ngModel)]="selectedPartner.footnote"/>
+          </div>
+        </div>
+
+        <!--Associate Sector-->
+        <div class="row mt-4">
+          <div class="col-12 section-heading">
+            Connection Information
+          </div>
+        </div>
+
+        <!--Upload Documents-->
+        <div class="row mt-4">
+          <div class="col-12 section-heading">
+            Upload Documents
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-3 align-right">
+            Image (.gif/.jpg/.png/.tiff/.jpeg):
+          </div>
+          <div class="col-2 pl-0 pr-0">
+            <input type="file" #uploadedImage accept="image/*"
+                   (change)="handleUpload($event.target.files)" [name]="'Browse...'"/>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-3 align-right">
+            Disclaimer(.docx):
+          </div>
+          <div class="col-2 pl-0 pr-0">
+            <input type="file" #uploadedImage accept="image/*"
+                   (change)="handleUpload($event.target.files)" [name]="'Browse...'"/>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-3 align-right">
+          </div>
+          <div class="col-2 pl-0 pr-0">
+            <button mat-raised-button class="app-button btn btn-sm">Upload Documents</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="row mt-2 modal-action-row">
+        <div class="col-3 align-right">
+        </div>
+        <div class="col-9 pl-0">
+          <button mat-raised-button class="app-button" (click)="savePartner()">Save Partner</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

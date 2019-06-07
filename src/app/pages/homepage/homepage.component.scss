@@ -1,0 +1,20 @@
+@import "../../../styles/variable";
+
+.demo-square {
+  min-height: 190px;
+  color: $TextGrey;
+  font-size: 13px;
+}
+
+::ng-deep .app-dark-theme {
+  .second-row {
+    .mat-card:not([class*='mat-elevation-z']) {
+      box-shadow: 0 0 13px 0 rgba(82, 63, 105, .05);
+
+      .mat-card-header{
+        border-bottom: 1px solid #ebedf2;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+<div>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'Replace Published Reports in Research Central'" [noActions]="true" class="table-card">
+        <div class="row mt-2">
+          <div class="col-2 align-right">
+            Document ID:
+          </div>
+          <div class="col-4 pl-0 pr-0">
+            <input type="text" class="app-text-box" [(ngModel)]="selectedReplacement.footnote"/>
+          </div>
+          <div class="col-4 pr-0 pr-0">
+            <button class="app-button btn btn-sm ag-table-btn view-doc-btn">View Document</button>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-2 align-right">
+            File Name:
+          </div>
+          <div class="col-4 pl-0 pr-0">
+            <input type="text" class="app-text-box" [(ngModel)]="selectedReplacement.footnote"/>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-2 align-right">
+            Replace With:
+          </div>
+          <div class="col-7 pl-0">
+            <input type="file" #uploadedImage accept="image/*"
+                   (change)="handleUpload($event.target.files)" [name]="'Browse...'"/>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-2 align-right">
+            Approval Comments:
+          </div>
+          <div class="col-8 pl-0">
+            <textarea type="text" class="form-control" rows="5"></textarea>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-2">
+          </div>
+          <div class="col-8 pl-0">
+            <button mat-raised-button class="app-button">Replace File</button>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col mt-lg-4">
+      <app-card [title]="'Previous File Replacements'" [noActions]="true" class="table-card">
+        <ag-grid-angular
+          class="{{appliedThemeClassOnTable}}"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="defaultColDef"
+          [floatingFilter]="true"
+          [animateRows]="true"
+          [pagination]="true"
+          [paginationPageSize]="selectedRowsPerPage"
+          (gridReady)="onGridReady($event)"
+          (firstDataRendered)="onFirstDataRendered($event)">
+        </ag-grid-angular>
+      </app-card>
+    </div>
+  </div>
+</div>

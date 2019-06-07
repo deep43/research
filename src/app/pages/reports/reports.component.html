@@ -1,0 +1,24 @@
+<div>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'Ratings Distribution Table'" [noActions]="true" class="table-card">
+        <ag-grid-angular
+          class="{{appliedThemeClassOnTable}}"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="defaultColDef"
+          [floatingFilter]="true"
+          [animateRows]="true"
+          [pagination]="true"
+          [paginationPageSize]="selectedRowsPerPage"
+          (gridReady)="onGridReady($event)"
+          (firstDataRendered)="onFirstDataRendered($event)">
+        </ag-grid-angular>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col mt-lg-4 text-center">
+          <button mat-raised-button class="app-button">Download Report</button>
+        </div>
+      </app-card>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,50 @@
+@import "../../../styles/variable";
+.app-breadcrumb{
+  background: $CIBCRed;
+  color: white;
+  margin: 0 -20px;
+
+  .page-header{
+    padding: 20px 20px 40px 20px;
+  }
+  .breadcrumb{
+    padding: 0.75rem 0;
+    background: none;
+    a{
+      color: white;
+    };
+  }
+  .breadcrumb-item + .breadcrumb-item{
+    &:before{
+      font-family: "feather";
+      content: "\e844";
+      color: #fff;
+    };
+  }
+}
+
+.not-active {
+    pointer-events: none;
+    cursor: default;
+}
+.cop-date-icon{
+  background: #231e1e;
+  color: white;
+  border-radius: 0;
+  border-left: 0;
+}
+
+.top-selects{
+  &.cop-top-selects{
+    padding: 0;
+  }
+  .form-control{
+    &.cop-date-input{
+      width: 57% !important;    }
+  }
+
+  &.refresh-col{
+    text-align: right;
+    display: block;
+  }
+}

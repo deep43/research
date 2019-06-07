@@ -1,0 +1,141 @@
+<div>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'Change Sector Rating'" [noActions]="true" class="table-card">
+        <div class="row">
+            <div class="col-12">
+              <ag-grid-angular
+                class="{{appliedThemeClassOnTable}}"
+                [rowData]="rowDataChange"
+                [columnDefs]="columnDefsChange"
+                [defaultColDef]="defaultColDef"
+                [floatingFilter]="true"
+                [animateRows]="true"
+                [pagination]="true"
+                [paginationPageSize]="selectedRowsPerPage"
+                (gridReady)="onGridReady($event)"
+                (firstDataRendered)="onFirstDataRendered($event)">
+              </ag-grid-angular>
+          </div>
+          <div class="col-12">
+            <button mat-raised-button class="app-button" (click)="openNewPodcastModal()">Save</button>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+
+  <!--Saved Podcast-->
+  <div class="row mt-lg-4">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'Saved Sector Rating Changes'" [noActions]="true" class="table-card">
+        <ag-grid-angular
+          class="{{appliedThemeClassOnTable}}"
+          [rowData]="rowData"
+          [columnDefs]="columnDefsMain"
+          [defaultColDef]="defaultColDef"
+          [floatingFilter]="true"
+          [animateRows]="true"
+          [pagination]="true"
+          [paginationPageSize]="selectedRowsPerPage"
+          (gridReady)="onGridReady($event)"
+          (firstDataRendered)="onFirstDataRendered($event)">
+        </ag-grid-angular>
+      </app-card>
+    </div>
+  </div>
+
+  <!--Published Podcast-->
+  <div class="row mt-lg-4">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'Published Sector Rating Changes'" [noActions]="true" class="table-card">
+        <ag-grid-angular
+          class="{{appliedThemeClassOnTable}}"
+          [rowData]="rowDataPublished"
+          [columnDefs]="columnDefsPublished"
+          [defaultColDef]="defaultColDef"
+          [floatingFilter]="true"
+          [animateRows]="true"
+          [pagination]="true"
+          [paginationPageSize]="selectedRowsPerPage"
+          (gridReady)="onGridReady($event)"
+          (firstDataRendered)="onFirstDataRendered($event)">
+        </ag-grid-angular>
+      </app-card>
+    </div>
+  </div>
+
+  <!--Deleted Podcast-->
+  <div class="row mt-lg-4">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'Deleted Sector Rating Changes'" [noActions]="true" class="table-card">
+        <ag-grid-angular
+          class="{{appliedThemeClassOnTable}}"
+          [rowData]="rowDataDeleted"
+          [columnDefs]="columnDefsDeleted"
+          [defaultColDef]="defaultColDef"
+          [floatingFilter]="true"
+          [animateRows]="true"
+          [pagination]="true"
+          [paginationPageSize]="selectedRowsPerPage"
+          (gridReady)="onGridReady($event)"
+          (firstDataRendered)="onFirstDataRendered($event)">
+        </ag-grid-angular>
+      </app-card>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade small-modal" bsModal #modal="bs-modal"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-events-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">Publish</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mt-4">
+          <div class="col-12 text-center">
+            <h6>Publish Podcast to the Research Portal</h6>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2 modal-action-row">
+        <div class="col-12 text-center">
+          <button mat-raised-button class="app-button btn btn-sm" (click)="publishPodcast()">Yes</button>
+          <button mat-raised-button class="app-button btn btn-sm ml-lg-5" (click)="modal.hide()">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade small-modal" bsModal #deleteModal="bs-modal"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-events-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">Delete</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mt-4">
+          <div class="col-12 text-center">
+            <h6>Permanently Delete Podcast?</h6>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2 modal-action-row">
+        <div class="col-12 text-center">
+          <button mat-raised-button class="app-button btn btn-sm" (click)="deletePodcast()">Yes</button>
+          <button mat-raised-button class="app-button btn btn-sm ml-lg-5" (click)="deleteModal.hide()">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
