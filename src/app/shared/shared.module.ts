@@ -28,7 +28,7 @@ import {ClickOutsideModule} from 'ng-click-outside';
     ClickOutsideModule
   ],
   exports: [
-    CustomCardComponent
+    CustomCardComponent,
   ],
   declarations: [
     CustomCardComponent,

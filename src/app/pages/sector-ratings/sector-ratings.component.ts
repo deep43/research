@@ -1,6 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {BsModalService, ModalDirective} from 'ngx-bootstrap/modal';
 import {AgGridNg2} from 'ag-grid-angular';
+import {ToastrService} from 'ngx-toastr';
+import {MessageService} from '../../shared/shared-service';
+import {Subscription} from 'rxjs';
 
 interface Ratings {
   id?: any;
@@ -229,23 +232,39 @@ export class SectorRatingsComponent implements OnInit {
     filter: true,
     resizable: true
   };
+  gridApis = [];
   gridApi;
   gridColumnApi;
   selectedRowsPerPage = 13;
   customFlag = true;
   active = true;
   showUploadWarning = false;
+  subscription: Subscription;
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, private toastr: ToastrService,
+              private messageService: MessageService) {
+    this.subscription = this.messageService.getMessage().subscribe(message => {
+      setTimeout(() => {
+        this.gridApis.map((api) => {
+          api.sizeColumnsToFit();
+        });
+      }, 500);
+    });
   }
 
   onGridReady(params) {
     this.gridApi = params.api;
+    this.gridApis.push(params.api);
     this.gridColumnApi = params.columnApi;
   }
 
   onFirstDataRendered(params) {
     params.api.sizeColumnsToFit();
+    setTimeout(() => {
+      this.gridApis.map((api) => {
+        api.sizeColumnsToFit();
+      });
+    }, 500);
   }
 
   openPublishModal() {
@@ -264,6 +283,16 @@ export class SectorRatingsComponent implements OnInit {
     }];
     this.selectedRatings = {};
     this.closePublishModal();
+
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>'
+      + 'Published sector rating changes successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
   }
 
   openDeleteModal() {
@@ -286,10 +315,29 @@ export class SectorRatingsComponent implements OnInit {
 
     this.selectedRatings = {};
     this.closeDeleteModal();
+
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>'
+      + 'Deleted sector rating changes successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
   }
 
   openNewPodcastModal() {
-    this.newPodcastModal.show();
+    // this.newPodcastModal.show();
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>'
+      + 'Saved sector rating changes successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
   }
 
   closeNewPodcastModal() {

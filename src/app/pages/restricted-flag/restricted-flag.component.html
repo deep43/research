@@ -14,8 +14,8 @@
           (gridReady)="onGridReady($event)"
           (firstDataRendered)="onFirstDataRendered($event)">
         </ag-grid-angular>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 pl-0">
-          <button mat-raised-button class="app-button">Save</button>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 pl-0 align-right mt-2">
+          <button mat-raised-button class="app-button" (click)="applyOverride()">Save</button>
         </div>
       </app-card>
     </div>
@@ -37,8 +37,8 @@
           (gridReady)="onGridReady($event)"
           (firstDataRendered)="onFirstDataRendered($event)">
         </ag-grid-angular>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col pl-0">
-          <button mat-raised-button class="app-button">Save</button>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col pl-0 align-right mt-2">
+          <button mat-raised-button class="app-button" (click)="removeOverride()">Save</button>
         </div>
       </app-card>
     </div>

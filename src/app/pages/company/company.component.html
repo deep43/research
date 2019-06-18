@@ -1,0 +1,133 @@
+<div>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'Organization Information'" [noActions]="true" class="table-card detailed-card">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Legal Name
+              </div>
+              <div class="col-8 pl-0">
+                <input type="text" class="app-text-box" placeholder="$IND"/>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Publish Name
+              </div>
+              <div class="col-8 pl-0">
+                <input type="text" class="app-text-box"/>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Image
+              </div>
+              <div class="col-8 pl-0">
+                <input type="file" #uploadedImage accept="image/*"
+                       (change)="handleAnalystUpload($event.target.files)" [name]="'Browse...'"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4 align-right">
+
+              </div>
+              <div class="col-8 pl-0">
+                <img class="uploaded-image" [src]="analystImgUrl"/>
+              </div>
+            </div>
+          </div>
+          <!--End of first col-3-->
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Website URL
+              </div>
+              <div class="col-8 pl-0">
+                <input type="text" class="app-text-box"/>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right pl-0">
+                Street Event Company ID
+              </div>
+              <div class="col-8 pl-0">
+                <input type="text" class="app-text-box"/>
+              </div>
+            </div>
+
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Reporting Currency
+              </div>
+              <div class="col-8 pl-0">
+                <select class="form-control form-control-sm">
+                  <option>US Dollar</option>
+                </select>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Country
+              </div>
+              <div class="col-8 pl-0">
+                <select class="form-control form-control-sm">
+                  <option>United States</option>
+                </select>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right pl-0">
+                Fiscal Year End Month
+              </div>
+              <div class="col-8 pl-0">
+                <select class="form-control form-control-sm">
+                  <option>12</option>
+                </select>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Fiscal Year End Day
+              </div>
+              <div class="col-8 pl-0">
+                <select class="form-control form-control-sm">
+                  <option>31</option>
+                </select>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Analyst Group
+              </div>
+              <div class="col-8 pl-0">
+                <select class="form-control form-control-sm">
+                  <option>Fundamental</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-2 align-right">
+            Description
+          </div>
+          <div class="col-10 pl-0">
+                <textarea type="text" class="app-text-box" rows="3"
+                          placeholder="">
+                </textarea>
+          </div>
+        </div>
+
+        <div class="row center-h mb-2">
+          <div class="col-12 align-right pl-0 mt-lg-4">
+            <button mat-raised-button class="app-button" (click)="addNewClause()">Save</button>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>

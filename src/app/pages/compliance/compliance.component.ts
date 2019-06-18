@@ -3,6 +3,9 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {AgGridNg2} from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 import {BsModalService, ModalDirective} from 'ngx-bootstrap/modal';
+import {ToastrService} from 'ngx-toastr';
+import {Subscription} from 'rxjs';
+import {MessageService} from '../../shared/shared-service';
 
 
 interface clause {
@@ -44,18 +47,36 @@ export class ComplianceComponent implements OnInit {
           that.editClause();
         });
         return eDiv;
-      }, pivot: true
+      }, pivot: true,
+      width: 120,
+      suppressSizeToFit: true
     },
     {
-      headerName: 'Footnote', field: 'footnote',
-      width: 200, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true
+      headerName: 'Footnote', field: 'footnote', suppressSizeToFit: true,
+      width: 120, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true
     },
     {
-      headerName: 'Short Description', field: 'shortDesc', width: 1200,
+      headerName: 'Short Description', field: 'shortDesc', width: 800,
       filter: 'agTextColumnFilter', pivot: true, suppressMovable: true
     },
-    {headerName: 'IB Flag', field: 'ibFlag', width: 200, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
-    {headerName: 'Is Custom', field: 'isCustom', width: 200, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
+    {
+      headerName: 'IB Flag',
+      field: 'ibFlag',
+      width: 120,
+      filter: 'agTextColumnFilter',
+      pivot: true,
+      suppressMovable: true,
+      suppressSizeToFit: true
+    },
+    {
+      headerName: 'Is Custom',
+      field: 'isCustom',
+      width: 120,
+      filter: 'agTextColumnFilter',
+      pivot: true,
+      suppressMovable: true,
+      suppressSizeToFit: true
+    },
 
   ];
 
@@ -64,6 +85,7 @@ export class ComplianceComponent implements OnInit {
     filter: true,
     resizable: true
   };
+  gridApis = [];
   gridApi;
   gridColumnApi;
   rowData: clause[] = [
@@ -99,8 +121,17 @@ export class ComplianceComponent implements OnInit {
   selectedRowsPerPage = 13;
   customFlag = true;
   active = true;
+  subscription: Subscription;
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, private toastr: ToastrService,
+              private messageService: MessageService) {
+    this.subscription = this.messageService.getMessage().subscribe(message => {
+      setTimeout(() => {
+        this.gridApis.map((api) => {
+          api.sizeColumnsToFit();
+        });
+      }, 500);
+    });
   }
 
   openModal() {
@@ -123,6 +154,15 @@ export class ComplianceComponent implements OnInit {
   }
 
   saveFootnote() {
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>'
+      + 'Footnote Added Successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
     if (!this.selectedClause.id) {
       this.selectedClause.id = this.rowData.length;
       this.rowData = [this.selectedClause, ...this.rowData];
@@ -144,11 +184,16 @@ export class ComplianceComponent implements OnInit {
 
   onGridReady(params) {
     this.gridApi = params.api;
+    this.gridApis.push(params.api);
     this.gridColumnApi = params.columnApi;
   }
 
   onFirstDataRendered(params) {
     params.api.sizeColumnsToFit();
+
+    setTimeout(() => {
+      params.api.sizeColumnsToFit();
+    }, 500);
   }
 
   ngOnInit() {

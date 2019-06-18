@@ -1,0 +1,49 @@
+<div>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'Distributed Reports'" [noActions]="true" class="table-card">
+        <div class="row mt-2 mb-4">
+          <div class="col-12 top-selection-col">
+            <span class="pr-2">Reports Selection:</span>
+            <div class="pr-2">
+              <select class="form-control form-control-sm">
+                <option>Rating Changes Security</option>
+              </select>
+            </div>
+            <span class="pr-2">Univeres:</span>
+            <div class="pr-2">
+              <select class="form-control form-control-sm">
+                <option>All</option>
+              </select>
+            </div>
+            <span class="pr-2">From:</span>
+            <div class="pr-2">
+              <input class="app-text-box" type="text">
+            </div>
+            <span class="pr-2">To:</span>
+            <div class="pr-2">
+              <input class="app-text-box" type="text">
+            </div>
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="sectorOrIndustry" class="pl-2">
+              <mat-radio-button class="pr-2 app-radio" value="1" [checked]="true">Html</mat-radio-button>
+              <mat-radio-button class="app-radio" value="2">Excel</mat-radio-button>
+            </mat-radio-group>
+            <button mat-raised-button class="app-button ml-lg-4" (click)="go()"> GO </button>
+          </div>
+        </div>
+        <ag-grid-angular
+          class="{{appliedThemeClassOnTable}}"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="defaultColDef"
+          [floatingFilter]="true"
+          [animateRows]="true"
+          [pagination]="true"
+          [paginationPageSize]="selectedRowsPerPage"
+          (gridReady)="onGridReady($event)"
+          (firstDataRendered)="onFirstDataRendered($event)">
+        </ag-grid-angular>
+      </app-card>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,9 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {AgGridNg2} from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 import {BsModalService, ModalDirective} from 'ngx-bootstrap/modal';
+import {ToastrService} from 'ngx-toastr';
+import {Subscription} from 'rxjs';
+import {MessageService} from '../../shared/shared-service';
 
 interface Sector {
   id?: any;
@@ -77,15 +80,15 @@ export class RestrictedFlagComponent implements OnInit {
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
       width: 40,
-      filter: false
+      filter: false, suppressSizeToFit: true,
     },
     {
       headerName: 'Rating', field: 'rating',
-      width: 200, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true
+      width: 120, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true, suppressSizeToFit: true,
     },
     {
       headerName: 'Ticker', field: 'ticker',
-      width: 200, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true
+      width: 120, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true, suppressSizeToFit: true,
     },
     {
       headerName: 'Company Name', field: 'companyName',
@@ -93,11 +96,11 @@ export class RestrictedFlagComponent implements OnInit {
     },
     {
       headerName: 'Analyst', field: 'analyst',
-      width: 200, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true
+      width: 120, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true, suppressSizeToFit: true,
     },
     {
       headerName: 'Expires', field: 'expires',
-      width: 200, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true
+      width: 120, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true, suppressSizeToFit: true,
     }
   ];
   rowDataRemoved: Sector[] = [
@@ -109,13 +112,23 @@ export class RestrictedFlagComponent implements OnInit {
     filter: true,
     resizable: true
   };
+  gridApis = [];
   gridApi;
   gridColumnApi;
   selectedRowsPerPage = 13;
   customFlag = true;
   active = true;
+  subscription: Subscription;
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, private toastr: ToastrService,
+              private messageService: MessageService) {
+    this.subscription = this.messageService.getMessage().subscribe(message => {
+      setTimeout(() => {
+        this.gridApis.map((api) => {
+          api.sizeColumnsToFit();
+        });
+      }, 500);
+    });
   }
 
   openModal() {
@@ -159,14 +172,43 @@ export class RestrictedFlagComponent implements OnInit {
 
   onGridReady(params) {
     this.gridApi = params.api;
+    this.gridApis.push(params.api);
     this.gridColumnApi = params.columnApi;
   }
 
   onFirstDataRendered(params) {
     params.api.sizeColumnsToFit();
+
+    setTimeout(() => {
+      params.api.sizeColumnsToFit();
+    }, 500);
   }
 
   ngOnInit() {
+  }
+
+  applyOverride() {
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>'
+      + 'Override applied successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
+  }
+
+  removeOverride() {
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>'
+      + 'Override removed successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
   }
 
 }

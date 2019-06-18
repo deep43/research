@@ -70,6 +70,7 @@ export class CustomCardComponent implements OnInit {
     resizable: true,
     animateRows: true
   };
+  gridApis = [];
   gridApi;
   gridColumnApi;
 
@@ -524,6 +525,7 @@ export class CustomCardComponent implements OnInit {
 
   onGridReady(params) {
     this.gridApi = params.api;
+    this.gridApis.push(params.api);
     this.gridColumnApi = params.columnApi;
   }
 

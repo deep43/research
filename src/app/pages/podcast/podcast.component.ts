@@ -2,6 +2,9 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {BsModalService, ModalDirective} from 'ngx-bootstrap/modal';
 import {AgGridNg2} from 'ag-grid-angular';
 
+import {ToastrService} from 'ngx-toastr';
+import {Subscription} from 'rxjs';
+import {MessageService} from '../../shared/shared-service';
 
 interface Podcast {
   id?: number;
@@ -25,6 +28,39 @@ export class PodcastComponent implements OnInit {
   @ViewChild('modal') modal: ModalDirective;
   @ViewChild('deleteModal') deleteModal: ModalDirective;
   @ViewChild('newPodcastModal') newPodcastModal: ModalDirective;
+
+  leftTitle = 'Available Authors';
+  rightTitle = 'Selected Authors';
+  leftItems = [
+    {name: 'Adams, Bryce', id: 1, selected: false},
+    {name: 'Anton, Giorgia', id: 2, selected: false},
+    {name: 'Bailey, Christopher', id: 3, selected: false},
+    {name: 'Bank, Matt', id: 4, selected: false},
+    {name: 'Bek, Rebert', id: 5, selected: false},
+  ];
+  rightItems = [];
+
+  leftTitle2 = 'Available Tickers';
+  rightTitle2 = 'Selected Tickers';
+  leftItems2 = [
+    {name: 'Acacia Mining PLC [ACA]', id: 1, selected: false},
+    {name: 'Acacia Timber Corp. [ADN]', id: 2, selected: false},
+    {name: 'Advantage Oil & Gas Ltd. [AAV]', id: 3, selected: false},
+    {name: 'Aecon Group Inc. [ARE]', id: 4, selected: false},
+    {name: 'Ag Growth International Inc. [AF]', id: 5, selected: false},
+  ];
+  rightItems2 = [];
+
+  leftTitle3 = 'Available Industries';
+  rightTitle3 = 'Selected Industries';
+  leftItems3 = [
+    {name: 'Automobiles & Components', id: 1, selected: false},
+    {name: 'Banks', id: 3, selected: false},
+    {name: 'Capital Goods', id: 2, selected: false},
+    {name: 'Chemicals', id: 4, selected: false},
+    {name: 'Commercial & Professional Service', id: 5, selected: false},
+  ];
+  rightItems3 = [];
 
   selectedPodcast: Podcast = {};
 
@@ -150,18 +186,29 @@ export class PodcastComponent implements OnInit {
     filter: true,
     resizable: true
   };
+  gridApis = [];
   gridApi;
   gridColumnApi;
   selectedRowsPerPage = 13;
   customFlag = true;
   active = true;
   showUploadWarning = false;
+  subscription: Subscription;
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, private toastr: ToastrService,
+              private messageService: MessageService) {
+    this.subscription = this.messageService.getMessage().subscribe(message => {
+      setTimeout(() => {
+        this.gridApis.map((api) => {
+          api.sizeColumnsToFit();
+        });
+      }, 500);
+    });
   }
 
   onGridReady(params) {
     this.gridApi = params.api;
+    this.gridApis.push(params.api);
     this.gridColumnApi = params.columnApi;
   }
 
@@ -212,17 +259,36 @@ export class PodcastComponent implements OnInit {
   }
 
   uploadDocument() {
-    this.showUploadWarning = true;
+    /*this.showUploadWarning = true;
     setTimeout((item) => {
       this.showUploadWarning = false;
-    }, 1000);
+    }, 1000);*/
+
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>' +
+      ' Uploaded the file successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true,
+      }
+    );
   }
 
   savePodCast() {
-    const nowTime = new Date().toLocaleTimeString();
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>' +
+      ' Successfully Saved Podcast' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
+    /*const nowTime = new Date().toLocaleTimeString();
     this.rowData = [...this.rowData, {...this.selectedPodcast, published: nowTime, id: this.rowData.length + 1}];
     this.selectedPodcast = {};
-    this.closeNewPodcastModal();
+    this.closeNewPodcastModal();*/
   }
 
   ngOnInit() {

@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ModalDirective} from 'ngx-bootstrap/modal';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-images-page',
@@ -11,10 +12,10 @@ export class ImagesPageComponent implements OnInit {
   @ViewChild('analystModal') analystModal: ModalDirective;
   sectorOrIndustry = '1';
   imageToUpload: File = null;
-  imgUrl = '/assets/dashboard_images/photo_gallery.jpg';
+  imgUrl = '/assets/dashboard_images/image_preview.png';
 
   analystImageToUpload: File = null;
-  analystImgUrl = '/assets/dashboard_images/photo_gallery.jpg';
+  analystImgUrl = '/assets/dashboard_images/image_preview.png';
 
   user: any = {
     firstName: 'John',
@@ -23,7 +24,7 @@ export class ImagesPageComponent implements OnInit {
     email: 'john.morrison@cibc.com',
   };
 
-  constructor() {
+  constructor(private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -47,6 +48,15 @@ export class ImagesPageComponent implements OnInit {
     };
 
     render.readAsDataURL(this.imageToUpload);
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>' +
+      ' Successfully uploaded the file' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
   }
 
   openAnalystModal() {
@@ -67,6 +77,18 @@ export class ImagesPageComponent implements OnInit {
     };
 
     render.readAsDataURL(this.analystImageToUpload);
+  }
+
+  saveFootnote() {
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>' +
+      'Images uploaded Successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
   }
 
 }

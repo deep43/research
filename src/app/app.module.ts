@@ -25,6 +25,16 @@ import { SectorRatingsComponent } from './pages/sector-ratings/sector-ratings.co
 import {PodcastListingComponent} from './pages/podcast-listing/podcast-listing.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import {ComingSoonComponent} from './pages/coming-soon/coming-soon.component';
+import {PublishedReportsComponent} from './pages/published-reports/published-reports.component';
+import {ReportsDistributionComponent} from './pages/reports-distribution/reports-distribution.component';
+import {ReportsComapanyHedgeComponent} from './pages/reports-comapany-hedge/reports-comapany-hedge.component';
+import { UsersComponent } from './pages/users/users.component';
+import { CompanyComponent } from './pages/company/company.component';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import {SelectAndMoveComponent} from './component/select-and-move/select-and-move.component';
+import {LoginComponent} from './pages/login/login.component';
+import {ToastrModule} from 'ngx-toastr';
+import { FirstTableComponent } from './component/first-table/first-table.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +53,16 @@ import {ComingSoonComponent} from './pages/coming-soon/coming-soon.component';
     RestrictedFlagComponent,
     SectorRatingsComponent,
     ComingSoonComponent,
-    HomepageComponent
+    HomepageComponent,
+    PublishedReportsComponent,
+    ReportsComapanyHedgeComponent,
+    ReportsDistributionComponent,
+    UsersComponent,
+    SelectAndMoveComponent,
+    CompanyComponent,
+    LoginComponent,
+    MainLayoutComponent,
+    FirstTableComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +74,8 @@ import {ComingSoonComponent} from './pages/coming-soon/coming-soon.component';
     AgGridModule,
     ModalModule.forRoot(),
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToastrModule.forRoot() // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

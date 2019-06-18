@@ -3,6 +3,9 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {AgGridNg2} from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 import {BsModalService, ModalDirective} from 'ngx-bootstrap/modal';
+import {ToastrService} from 'ngx-toastr';
+import {MessageService} from '../../shared/shared-service';
+import {Subscription} from 'rxjs';
 
 interface Sector {
   id?: any;
@@ -38,7 +41,6 @@ export class ReportsComponent implements OnInit {
     }
   ];
 
-
   rowData: Sector[] = [
     {id: '1', name: 'Consumer Discretionary'},
     {id: '2', name: 'Consumer Stapes'},
@@ -59,13 +61,23 @@ export class ReportsComponent implements OnInit {
     filter: true,
     resizable: true
   };
+  gridApis = [];
   gridApi;
   gridColumnApi;
   selectedRowsPerPage = 13;
   customFlag = true;
   active = true;
+  subscription: Subscription;
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, private toastr: ToastrService,
+              private messageService: MessageService) {
+    this.subscription = this.messageService.getMessage().subscribe(message => {
+      setTimeout(() => {
+        this.gridApis.map((api) => {
+          api.sizeColumnsToFit();
+        });
+      }, 500);
+    });
   }
 
   openModal() {
@@ -109,6 +121,7 @@ export class ReportsComponent implements OnInit {
 
   onGridReady(params) {
     this.gridApi = params.api;
+    this.gridApis.push(params.api);
     this.gridColumnApi = params.columnApi;
   }
 
@@ -118,6 +131,16 @@ export class ReportsComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  go() {
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>'
+      + 'Report Downloaded Successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
+  }
 }
 

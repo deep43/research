@@ -3,7 +3,9 @@
 .sidenav-container {
   height: 100%;
 }
-
+.logout-icon{
+  padding-right: 10px;
+}
 .width-transition{
   transition: max-width 0.3s ease-in-out;
 }
@@ -378,6 +380,7 @@ i {
 
 .dashboard-side-nav {
   // color: $CIBCBlack;
+  transition: width 0.5s ease-in-out;
   position: fixed;
   top: 40px;
   background: white;
@@ -386,10 +389,14 @@ i {
   // align-items: center;
   z-index: 2;
   font-size: 12px;
-  min-width: 20px;
+  width: 30px;
+  //overflow: hidden;
   .main-menu-header {
-    display: none;
-    // transition: display 0.3s ease-in-out;
+    //display: none;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    transition: width 0.5s linear, height 0.5s linear;
 
     color: $CIBCBlack;
     text-align: center;
@@ -397,9 +404,22 @@ i {
     margin-bottom: 10px;
     img {
       position: relative;
-      width: 60px;
+      width: 80px;
       margin: 0 auto 15px;
       display: block;
+    }
+  }
+  .submenu-list {
+    .menu-link-list {
+      i {
+        padding-left: 3px;
+      }
+      .child-link{
+        display: flex;
+      }
+      .submenu-link-span{
+        padding-left: 13px;
+      }
     }
   }
   .active {
@@ -415,9 +435,7 @@ i {
           padding-left: 3px;
           transition: font-weight 0.3s;
         }
-        .submenu-link-span{
-          padding-left: 13px;
-        }
+
       }
     }
   }
@@ -498,6 +516,7 @@ i {
     height: 100%;
     top: 0;
     padding-top: 10px;
+
 
     input {
       border-radius: 20px;
@@ -594,7 +613,8 @@ i {
   }
 
   .main-menu-header {
-    display: block;
+    width: 207px;
+    height: 102px;
   }
   .active {
     .toggle-link {
@@ -602,9 +622,9 @@ i {
     }
   }
   .dashboard-side-nav {
-    min-width: 227px;
+    width: 227px;
     padding: 10px;
-    transition: min-width 0.5s ease;
+    overflow: hidden;
   }
   .toggle-link {
     display: inline;
@@ -612,6 +632,7 @@ i {
     color: $CIBCBlack;
     position: static;
     height: 100%;
+    width: auto;
     padding-top: 0;
 
     &.hover {
@@ -708,7 +729,7 @@ i {
 
 .quick-links {
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   text-decoration: none;
   margin-left: 20px;
   margin-top: 3px;
@@ -746,4 +767,10 @@ i {
     }
   }
 
+}
+
+.app-logo-heading{
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 600;
 }

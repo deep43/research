@@ -33,10 +33,10 @@
         <a href="javascript:" appToggleFullScreen>
           <i class="feather icon-maximize full-screen"></i>
         </a>
-        <a href="javascript:" [matMenuTriggerFor]="menu">
+        <a href="javascript:">
           <i class="feather icon-bell" matBadge="5" matBadgeColor="warn"></i>
         </a>
-        <mat-menu #menu="matMenu">
+        <!--<mat-menu #menu="matMenu">
           <div mat-menu-item class="text-center">
             You have <span class="notification-number">{{notifications.length}}</span> new notifications.
             <button class="clear-all btn-sm" *ngIf="notifications.length" (click)="clearAllNotifications()">Clear All
@@ -49,7 +49,7 @@
                  (click)="deleteNotification($event, notification)"></i>
             </div>
           </div>
-        </mat-menu>
+        </mat-menu>-->
         <!--<a href="javascript:">
           <i class="feather icon-message-square" matBadge="3" matBadgeColor="warn"></i>
         </a>-->
@@ -60,7 +60,7 @@
         </a>
         <mat-menu #menuLogin="matMenu" class="user-menus">
           <div mat-menu-item>
-            <i class="feather icon-log-out"></i>Logout
+            <i class="feather icon-log-out logout-icon"></i>Logout
           </div>
         </mat-menu>
       </div>
@@ -68,15 +68,14 @@
     <!-- Header Toolbar End-->
     <div class="dashboard-side-nav">
       <div class="main-menu-header">
-        <div class="user-details"><h6 class="m-t-20 m-b-20">Research Admin</h6><img
-          class="img-menu-user" alt="User-Profile-Image" src="assets/dashboard_images/research_logomark.png">
+        <div class="user-details"><h6 class="m-t-20 m-b-20 app-logo-heading">Research Admin</h6><img
+          class="img-menu-user" alt="User-Profile-Image" src="assets/dashboard_images/RA_logomark_2.png">
         </div>
       </div>
       <ul class="nav flex-column">
         <li class="nav-item menu-link-list" *ngFor="let item of menuItems"
             [ngClass]="{'active': item.active || item.clicked || item.id === router.url}">
-          <div
-            [ngClass]="{'link-self-expanded': item.clicked}" class="menu-link"
+          <div class="menu-link"
             (click)="openSubmenu(item)">
             <i class="{{item.icon}}" [ngClass]="{'active': item.id === router.url}"></i>
             <a class="toggle-link toggle-link-span" [routerLink]=[item.id]
@@ -99,7 +98,7 @@
                  [ngClass]="{'clicked': item.clicked}">{{item.title}}
                 <i class="feather icon-chevron-right submenu-icon"></i>
               </a>
-              <a class="submenu-link" *ngIf="item.submenuWithSearch">
+              <!--<a class="submenu-link" *ngIf="item.submenuWithSearch">
                 <form class="toggle-link toggle-link-form"
                       [ngClass]="{'toggle-link-expanded': item.clicked, 'toggle-link-closed': !item.clicked}"
                       action="" (submit)="goToPage(item.id)">
@@ -110,7 +109,7 @@
                     <i class="icofont icofont-search search-icon" (click)="goToPage(item.id)"></i>
                   </div>
                 </form>
-              </a>
+              </a>-->
             </div>
           </div>
           <ul class="submenu-list" [ngClass]="{'shown': item.clicked && item.links}">
@@ -118,7 +117,7 @@
                 (click)="onSublinkCliked($event, submenu)"
                 [routerLink]=[submenu.id]
                 [ngClass]="{'active': submenu.clicked}">
-              <a><i class="{{submenu.icon}}"></i> <span class="submenu-link-span">{{submenu.title}}</span> </a>
+              <a class="child-link"><i class="{{submenu.icon}}"></i> <span class="submenu-link-span">{{submenu.title}}</span> </a>
             </li>
           </ul>
         </li>

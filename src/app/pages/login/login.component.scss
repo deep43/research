@@ -1,0 +1,61 @@
+@import "../../../styles/generic";
+
+.login-page {
+  background-image: linear-gradient(rgba(139, 29, 65, 1) 10px, rgba(139, 29, 65, 1) 0%) !important;
+  width: 100vw;
+  height: 200px;
+
+  ::ng-deep .mat-card-content{
+    position: relative !important;
+    font-family: WhitneyRegular;
+
+    h3{
+      font-weight: 600 !important;
+    }
+
+    .mat-form-field{
+      font-family: WhitneyRegular;
+    }
+
+    .mat-form-field-underline{
+      background: rgba(139, 29, 65, 0.42);
+    }
+    .mat-focused{
+      .mat-form-field-ripple{
+        background-color: $CIBCRed;
+      }
+
+      .mat-form-field-label{
+        color: $CIBCRed;
+      }
+    }
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+  .login-logo {
+    padding: 20px 0;
+    img {
+      width: 100px;
+    }
+  }
+  .main-row {
+    display: flex;
+    justify-content: center;
+  }
+  .login-btn-row{
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+
+    button{
+      padding: 10px 16px;
+      font-size: 15px;
+      line-height: 23px;
+      color: white;
+      background: $CIBCRed;
+      width: 100%;
+    }
+  }
+}

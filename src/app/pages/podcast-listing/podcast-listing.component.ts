@@ -1,6 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {BsModalService, ModalDirective} from 'ngx-bootstrap/modal';
 import {AgGridNg2} from 'ag-grid-angular';
+import {ToastrService} from 'ngx-toastr';
+import {MessageService} from '../../shared/shared-service';
+import {Subscription} from 'rxjs';
 
 
 interface Podcast {
@@ -150,18 +153,29 @@ export class PodcastListingComponent implements OnInit {
     filter: true,
     resizable: true
   };
+  gridApis = [];
   gridApi;
   gridColumnApi;
   selectedRowsPerPage = 13;
   customFlag = true;
   active = true;
   showUploadWarning = false;
+  subscription: Subscription;
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, private toastr: ToastrService,
+              private messageService: MessageService) {
+    this.subscription = this.messageService.getMessage().subscribe(message => {
+      setTimeout(() => {
+        this.gridApis.map((api) => {
+          api.sizeColumnsToFit();
+        });
+      }, 500);
+    });
   }
 
   onGridReady(params) {
     this.gridApi = params.api;
+    this.gridApis.push(params.api);
     this.gridColumnApi = params.columnApi;
   }
 
@@ -182,6 +196,15 @@ export class PodcastListingComponent implements OnInit {
     this.rowDataPublished = [...this.rowDataPublished, {...this.selectedPodcast, published: nowTime}];
     this.selectedPodcast = {};
     this.closePublishModal();
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>' +
+      ' Podcast published successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
   }
 
   openDeleteModal() {
@@ -201,6 +224,15 @@ export class PodcastListingComponent implements OnInit {
 
     this.selectedPodcast = {};
     this.closeDeleteModal();
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>' +
+      ' Podcast deleted successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
   }
 
   openNewPodcastModal() {

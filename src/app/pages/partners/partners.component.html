@@ -45,7 +45,7 @@
           <div class="col-3 center-h">
             Organization/Partner Name:
           </div>
-          <div class="col-4 pl-0">
+          <div class="col-4 pl-0 pr-0">
             <select class="form-control form-control-sm">
               <option>Select Partner</option>
             </select>
@@ -114,10 +114,18 @@
         <!--Associate Sector-->
         <div class="row mt-4">
           <div class="col-12 section-heading">
-            Connection Information
+            Associate Sectors
           </div>
         </div>
-
+        <div class="row mt-2">
+          <div class="col-12 align-col">
+            <app-select-and-move [leftItems]="leftItems"
+                                 [rightItems]="rightItems"
+                                 [leftTitle]="leftTitle"
+                                 [rightTitle]="rightTitle"
+            ></app-select-and-move>
+          </div>
+        </div>
         <!--Upload Documents-->
         <div class="row mt-4">
           <div class="col-12 section-heading">
@@ -149,7 +157,7 @@
           <div class="col-3 align-right">
           </div>
           <div class="col-2 pl-0 pr-0">
-            <button mat-raised-button class="app-button btn btn-sm">Upload Documents</button>
+            <button mat-raised-button class="app-button btn btn-sm" (click)="upload()">Upload Documents</button>
           </div>
         </div>
 

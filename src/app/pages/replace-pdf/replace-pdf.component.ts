@@ -3,6 +3,9 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {AgGridNg2} from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 import {BsModalService, ModalDirective} from 'ngx-bootstrap/modal';
+import {ToastrService} from 'ngx-toastr';
+import {MessageService} from '../../shared/shared-service';
+import {Subscription} from 'rxjs';
 
 interface Replacements {
   id?: any;
@@ -29,11 +32,11 @@ export class ReplacePDFComponent implements OnInit {
   columnDefs = [
     {
       headerName: 'PublicationID', field: 'id',
-      width: 200, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true
+      width: 120, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true
     },
     {
       headerName: 'Current Files', filter: false, resizable: true, suppressMovable: true,
-      cellStyle: {'text-align': 'center'},
+      cellStyle: {'text-align': 'center'}, width: 120,
       cellRenderer: (params) => {
         const eDiv = document.createElement('div');
         eDiv.innerHTML = '<a href="" class="client-link current-files"> View </a>';
@@ -51,7 +54,7 @@ export class ReplacePDFComponent implements OnInit {
     },
     {
       headerName: 'Previous Files', filter: false, resizable: true, suppressMovable: true,
-      cellStyle: {'text-align': 'center'},
+      cellStyle: {'text-align': 'center'}, suppressSizeToFit: true, width: 120,
       cellRenderer: (params) => {
         const eDiv = document.createElement('div');
         eDiv.innerHTML = '<a href="" class="client-link previous-files"> View </a>';
@@ -68,14 +71,17 @@ export class ReplacePDFComponent implements OnInit {
       }, pivot: true
     },
     {
-      headerName: 'Date Replaced', field: 'dateReplaced',
-      width: 300, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true
+      headerName: 'Date Replaced', field: 'dateReplaced', suppressSizeToFit: true,
+      width: 200, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true
     },
     {
-      headerName: 'comments', field: 'comments', width: 1000,
+      headerName: 'comments', field: 'comments', width: 700,
       filter: 'agTextColumnFilter', pivot: true, suppressMovable: true
     },
-    {headerName: 'Replaced By', field: 'replacedBy', width: 200, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
+    {
+      headerName: 'Replaced By', field: 'replacedBy', width: 120, suppressSizeToFit: true,
+      filter: 'agTextColumnFilter', pivot: true, suppressMovable: true
+    },
   ];
 
 
@@ -137,13 +143,23 @@ export class ReplacePDFComponent implements OnInit {
     filter: true,
     resizable: true
   };
+  gridApis = [];
   gridApi;
   gridColumnApi;
   selectedRowsPerPage = 13;
   customFlag = true;
   active = true;
+  subscription: Subscription;
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, private toastr: ToastrService,
+              private messageService: MessageService) {
+    this.subscription = this.messageService.getMessage().subscribe(message => {
+      setTimeout(() => {
+        this.gridApis.map((api) => {
+          api.sizeColumnsToFit();
+        });
+      }, 500);
+    });
   }
 
   openModal() {
@@ -187,14 +203,31 @@ export class ReplacePDFComponent implements OnInit {
 
   onGridReady(params) {
     this.gridApi = params.api;
+    this.gridApis.push(params.api);
     this.gridColumnApi = params.columnApi;
   }
 
   onFirstDataRendered(params) {
     params.api.sizeColumnsToFit();
+
+    setTimeout(() => {
+      params.api.sizeColumnsToFit();
+    }, 500);
   }
 
   ngOnInit() {
+  }
+
+  go() {
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>'
+      + 'File replaced successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
   }
 
 }

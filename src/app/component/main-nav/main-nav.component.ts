@@ -5,6 +5,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Observable, Subject} from 'rxjs';
 import {NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
 import {filter, map} from 'rxjs/operators';
+import {MessageService} from '../../shared/shared-service';
 
 @Component({
   selector: 'app-main-nav',
@@ -217,10 +218,12 @@ export class MainNavComponent {
 
   toggle(event) {
     this.showFullNavigation = event.checked;
+    this.messageService.sendMessage(this.showFullNavigation);
   }
 
   constructor(private breakpointObserver: BreakpointObserver,
-              private router: Router, private route: ActivatedRoute) {
+              private router: Router, private route: ActivatedRoute,
+              private messageService: MessageService) {
     this.router.events.pipe(
       filter((event: any) => event instanceof NavigationEnd)
     ).subscribe(x => {

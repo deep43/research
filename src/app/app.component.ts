@@ -1,10 +1,21 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {fadeAnimation} from './component/helpers/animations/fade-router-animation';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [fadeAnimation]
 })
 export class AppComponent {
-  title = 'research';
+  title = 'Research';
+
+  constructor(private router: Router) {
+    // this.router.navigateByUrl('/login');
+  }
+
+  public getRouterOutletState(outlet) {
+    return outlet.isActivated ? outlet.activatedRoute : '';
+  }
 }

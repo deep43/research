@@ -39,7 +39,7 @@
             </mat-radio-group>
           </div>
         </div>
-        <div class="row ">
+        <div class="row mt-2">
           <div class="col-2 center-h">
             Sector:
           </div>
@@ -144,10 +144,8 @@
           </div>
         </div>
         <div class="row mt-2">
-          <div class="col-2 align-right">
-
-          </div>
-          <div class="col-2 pl-0">
+          <div class="col-2 "></div>
+          <div class="col-8 pl-0">
             <img class="uploaded-image" [src]="analystImgUrl"/>
           </div>
         </div>
@@ -156,7 +154,7 @@
         <div class="col-2 align-right">
         </div>
         <div class="col-8 pl-0">
-          <button mat-raised-button class="app-button">Upload</button>
+          <button mat-raised-button class="app-button" (click)="saveFootnote()">Upload</button>
         </div>
       </div>
     </div>

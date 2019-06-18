@@ -30,7 +30,8 @@
               "src/assets/icon/feather/css/feather.css",
               "src/assets/icon/themify/themify-icons.css",
               "src/assets/icon/icofont/css/icofont.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true

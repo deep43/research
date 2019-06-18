@@ -1,18 +1,53 @@
 <div class="row">
   <div class="col-6">
-    <app-card [title]="'Lorem Ipsum Title'" [noActions]="true" class="table-card">
-      <div class="row">
-        <div class="col-12 demo-square">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
-        </div>
-      </div>
-    </app-card>
+    <app-first-table></app-first-table>
   </div>
   <div class="col-6">
-    <app-card [title]="'Lorem Ipsum Title'" [noActions]="true" class="table-card">
+    <app-card [title]="'Reports Published in June'" [noActions]="true" class="table-card detailed-card no-mb">
+      <div class="row">
+        <div class="col-12 align-right">
+          <mat-radio-group aria-label="Select an option"
+                           (change)="changeQuarterOrMonth(dp, quarterOrMonth1 === '1')"
+                           [(ngModel)]="quarterOrMonth1" class="mr-2">
+            <mat-radio-button class="pr-2 app-radio" value="1" [checked]="true">By Quarter</mat-radio-button>
+            <mat-radio-button class="app-radio" value="2">By Month</mat-radio-button>
+          </mat-radio-group>
+          <mat-form-field class="ml-2">
+            <input matInput [matDatepicker]="dp" [max]="maxDate"
+                   placeholder="{{quarterOrMonth1 === '2' ? 'Month and Year': 'Year' }}" [formControl]="date">
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp
+                            startView="multi-year"
+                            (yearSelected)="chosenYearHandler($event, dp, date, quarterOrMonth1 === '1')"
+                            (monthSelected)="chosenMonthHandler($event, dp, date, 'rowData', rowData)"
+                            panelClass="example-month-picker">
+            </mat-datepicker>
+          </mat-form-field>
+          <select class="form-control form-control-sm ml-3 table-select"
+                  (change)="changeQuarterSelection( 'rowData', rowData)"
+                  [ngClass]="{'disabled': quarterOrMonth1 === '2'}">
+            <option>Q1</option>
+            <option>Q2</option>
+            <option>Q3</option>
+            <option>Q4</option>
+          </select>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-12 demo-square">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+          <ag-grid-angular style="width: 100%; height: 100%;"
+            class="{{appliedThemeClassOnTable}}"
+            [rowData]="rowData"
+            [columnDefs]="columnDefsMonth"
+            [defaultColDef]="defaultColDef"
+            [floatingFilter]="true"
+            [animateRows]="true"
+            [pagination]="true"
+            [paginationPageSize]="selectedRowsPerPage"
+            (gridReady)="onGridReady($event)"
+            (firstDataRendered)="onFirstDataRendered($event)">
+          </ag-grid-angular>
         </div>
       </div>
     </app-card>
@@ -20,21 +55,106 @@
 </div>
 <div class="row mt-lg-4 second-row">
   <div class="col-6">
-    <app-card [title]="'Lorem Ipsum Title'" [noActions]="true" class="table-card">
+    <app-card [title]="'Sector Comparison of Reports Published'" [noActions]="true" class="table-card">
+      <div class="row mt-2">
+        <div class="col-12 align-right">
+          <mat-radio-group aria-label="Select an option"
+                           (change)="changeQuarterOrMonth(dp2, quarterOrMonth2 === '1')"
+                           [(ngModel)]="quarterOrMonth2" class="mr-2 mb-1">
+            <mat-radio-button class="pr-2 app-radio" value="1" [checked]="true">By Quarter</mat-radio-button>
+            <mat-radio-button class="app-radio" value="2">By Month</mat-radio-button>
+          </mat-radio-group>
+          <mat-form-field class="ml-2">
+            <input matInput [matDatepicker]="dp2" [max]="maxDate"
+                   placeholder="{{quarterOrMonth2 === '2' ? 'Month and Year': 'Year' }}" [formControl]="date2">
+            <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+            <mat-datepicker #dp2
+                            startView="multi-year"
+                            (yearSelected)="chosenYearHandler($event, dp2, date2, quarterOrMonth2 === '1' )"
+                            (monthSelected)="chosenMonthHandler($event, dp2, date2, 'chart', data1Month)"
+                            panelClass="example-month-picker">
+            </mat-datepicker>
+          </mat-form-field>
+          <select class="form-control form-control-sm ml-3 table-select"
+                  (change)="changeQuarterSelection( 'chart', data1Month)"
+                  [ngClass]="{'disabled': quarterOrMonth2 === '2'}">
+            <option>Q1</option>
+            <option>Q2</option>
+            <option>Q3</option>
+            <option>Q4</option>
+          </select>
+        </div>
+      </div>
       <div class="row">
         <div class="col-12 demo-square">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+          <div id="activity-comission" style="width: 100%;" [style.height]="height"></div>
         </div>
       </div>
     </app-card>
   </div>
   <div class="col-6">
-    <app-card [title]="'Lorem Ipsum Title'" [noActions]="true" class="table-card">
+    <app-card [title]="'Sector Comparison of Reports Published (Weekly/Monthly)'" [noActions]="true" class="table-card">
+      <div class="row mt-2">
+        <div class="col-12 align-right">
+          <mat-radio-group aria-label="Select an option"
+                           (change)="changeQuarterOrMonth(dp1, quarterOrMonth3 === '1')"
+                           [(ngModel)]="quarterOrMonth3" class="mr-2">
+            <mat-radio-button class="pr-2 app-radio" value="1" [checked]="true">By Quarter</mat-radio-button>
+            <mat-radio-button class="app-radio" value="2">By Month</mat-radio-button>
+          </mat-radio-group>
+          <mat-form-field class="ml-2">
+            <input matInput [matDatepicker]="dp1" [max]="maxDate"
+                   placeholder="{{quarterOrMonth3 === '2' ? 'Month and Year': 'Year' }}" [formControl]="date1">
+            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1
+                            startView="multi-year"
+                            (yearSelected)="chosenYearHandler($event, dp1, date1, quarterOrMonth3 === '1' )"
+                            (monthSelected)="chosenMonthHandler($event, dp1, date1, 'chart2', data2Quarter)"
+                            panelClass="example-month-picker">
+            </mat-datepicker>
+          </mat-form-field>
+          <select class="form-control form-control-sm ml-3 table-select"
+                  (change)="changeQuarterSelection( 'chart2', data2Quarter)"
+                  [ngClass]="{'disabled': quarterOrMonth3 === '2'}">
+            <option>Q1</option>
+            <option>Q2</option>
+            <option>Q3</option>
+            <option>Q4</option>
+          </select>
+        </div>
+      </div>
       <div class="row">
         <div class="col-12 demo-square">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+          <div id="chart2" style="width: 100%;" [style.height]="height"></div>
         </div>
       </div>
     </app-card>
+  </div>
+</div>
+
+<div class="modal fade small-modal" bsModal #modal="bs-modal"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-events-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">Sector</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row mt-4">
+          <div class="col-12 text-center">
+            <h6>Sector Clicked</h6>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2 modal-action-row">
+        <div class="col-12 text-center">
+          <!--<button mat-raised-button class="app-button btn btn-sm" (click)="publishPodcast()">Yes</button>
+          <button mat-raised-button class="app-button btn btn-sm ml-lg-5" (click)="modal.hide()">No</button>-->
+        </div>
+      </div>
+    </div>
   </div>
 </div>

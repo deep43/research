@@ -1,0 +1,194 @@
+<div>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'User Information'" [noActions]="true" class="table-card detailed-card">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                First Name
+              </div>
+              <div class="col-8 pl-0">
+                <input type="text" class="app-text-box"/>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Middle Initial
+              </div>
+              <div class="col-8 pl-0">
+                <input type="text" class="app-text-box"/>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Last Name
+              </div>
+              <div class="col-8 pl-0">
+                <input type="text" class="app-text-box"/>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Formal Name
+              </div>
+              <div class="col-8 pl-0">
+                <input type="text" class="app-text-box"/>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Login Id
+              </div>
+              <div class="col-8 pl-0">
+                <input type="text" class="app-text-box"/>
+              </div>
+            </div>
+
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Person Image
+              </div>
+              <div class="col-8 pl-0">
+                <input type="file" #uploadedImage accept="image/*"
+                       (change)="handleAnalystUpload($event.target.files)" [name]="'Browse...'"/>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+
+              </div>
+              <div class="col-8 pl-0">
+                <img class="uploaded-image" [src]="analystImgUrl"/>
+              </div>
+            </div>
+          </div>
+          <!--End of first col-3-->
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right pl-0">
+                Vendor Code Corp
+              </div>
+              <div class="col-8 pl-0">
+                <input type="text" class="app-text-box"/>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Vendor Code Inc
+              </div>
+              <div class="col-8 pl-0">
+                <input type="text" class="app-text-box"/>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Network Printer
+              </div>
+              <div class="col-8 pl-0">
+                <select class="form-control form-control-sm">
+                  <option>None</option>
+                </select>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Title
+              </div>
+              <div class="col-8 pl-0">
+                <input type="text" class="app-text-box"/>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                User Type
+              </div>
+              <div class="col-8 pl-0">
+                <select class="form-control form-control-sm">
+                  <option>Common</option>
+                </select>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Is Associate
+              </div>
+              <div class="col-8 pl-0">
+                <mat-radio-group aria-label="Select an option" [(ngModel)]="sectorOrIndustry">
+                  <mat-radio-button class="pr-2 app-radio" value="1" [checked]="true">Yes</mat-radio-button>
+                  <mat-radio-button class="app-radio" value="2">No</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+            <!--<div class="row">
+              <div class="col-2 align-right">
+
+              </div>
+              <div class="col-2 pl-0">
+                <img class="uploaded-image" [src]="analystImgUrl"/>
+              </div>
+            </div>-->
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Phone
+              </div>
+              <div class="col-8 pl-0">
+                <input appPhoneMask class="app-text-box"
+                       pattern="^\(([0-9]{3})\)[ ]([0-9]{3})[-]([0-9]{4})$" maxlength="14"
+                       [(ngModel)]="phone" type="text"/>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Email
+              </div>
+              <div class="col-8 pl-0">
+                <input type="text" class="app-text-box"/>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Reporting Line
+              </div>
+              <div class="col-8 pl-0">
+                <select class="form-control form-control-sm">
+                  <option>CA</option>
+                </select>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Status
+              </div>
+              <div class="col-8 pl-0">
+                <select class="form-control form-control-sm">
+                  <option>Inactive</option>
+                </select>
+              </div>
+            </div>
+            <div class="row center-h mb-2">
+              <div class="col-4 align-right">
+                Analyst Group
+              </div>
+              <div class="col-8 pl-0">
+                <select class="form-control form-control-sm">
+                  <option>Fundamental</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12 align-right">
+            <button mat-raised-button class="app-button" (click)="addNewClause()">Save</button>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>

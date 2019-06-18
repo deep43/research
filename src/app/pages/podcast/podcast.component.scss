@@ -1,0 +1,13 @@
+.align-col {
+
+}
+
+::ng-deep {
+  .left-col {
+    padding-right: 0;
+  }
+
+  .right-col {
+    padding-left: 0;
+  }
+}

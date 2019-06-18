@@ -7,14 +7,75 @@
 }
 
 ::ng-deep .app-dark-theme {
+  .card-action-row {
+    justify-content: flex-end;
+  }
+  .first-table{
+    .card-action-row {
+      margin-top: -65px !important;
+    }
+    .mat-datepicker-content .mat-calendar-next-button, .mat-datepicker-content .mat-calendar-previous-button{
+      pointer-events: none !important;
+      display: none !important;
+    }
+  }
+  .no-mb {
+    .mat-card-header {
+      margin-bottom: 10px;
+    }
+  }
   .second-row {
     .mat-card:not([class*='mat-elevation-z']) {
       box-shadow: 0 0 13px 0 rgba(82, 63, 105, .05);
 
-      .mat-card-header{
+      .mat-card-header {
         border-bottom: 1px solid #ebedf2;
-        margin-bottom: 10px;
+        //margin-bottom: -10px !important;
       }
     }
   }
+  input {
+    font-family: WhitneyRegular;
+  }
+  .mat-form-field-label {
+    font-family: WhitneyRegular;
+  }
+  .mat-datepicker-toggle-active {
+    color: $CIBCRed !important;
+  }
+  .mat-focused {
+    .mat-form-field-ripple {
+      background-color: $CIBCRed !important;
+    }
+    input {
+      font-family: WhitneyRegular;
+    }
+    .mat-form-field-label {
+      font-family: WhitneyRegular;
+      color: $CIBCRed !important;
+      outline-color: $CIBCRed !important;
+    }
+    // display: none;
+  }
+  .mat-form-field-infix {
+    width: 80px;
+  }
+}
+
+::ng-deep .mat-calendar-body-selected {
+  background-color: $CIBCRed;
+  color: #fff;
+}
+.table-select{
+  display: inline-block;
+  width: 20%;
+}
+
+.disabled{
+  pointer-events: none;
+  opacity: 0.5;
+  background: #ededed;
+}
+::ng-deep .amcharts-AxisLabel{
+  cursor: pointer !important;
 }

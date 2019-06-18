@@ -1,0 +1,30 @@
+<app-card [title]="'Reports Published Today'" [noActions]="true" class="table-card detailed-card first-table no-mb">
+  <div class="row">
+    <div class="col-12 align-right">
+      <mat-form-field>
+        <input matInput  [min]="minDate" [max]="maxDate"
+               [matDatepicker]="picker1" placeholder="Select Date"
+               (dateChange)="dateSelected($event)"
+               [formControl]="date3">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1 class="first-table-dp"></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 demo-square">
+      <ag-grid-angular style="width: 100%; height: 100%;"
+        class="{{appliedThemeClassOnTable}}"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [floatingFilter]="true"
+        [animateRows]="true"
+        [pagination]="true"
+        [paginationPageSize]="selectedRowsPerPage"
+        (gridReady)="onGridReady($event)"
+        (firstDataRendered)="onFirstDataRendered($event)">
+      </ag-grid-angular>
+    </div>
+  </div>
+</app-card>

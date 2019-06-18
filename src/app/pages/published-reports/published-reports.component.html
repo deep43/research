@@ -1,0 +1,36 @@
+<div>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 first-grid-col">
+      <app-card [title]="'Published Reports'" [noActions]="true" class="table-card">
+        <div class="row mt-2 mb-4">
+          <div class="col-12 top-selection-col">
+            <!--<span class="pr-2">Enter Ticker or Security ID:</span>-->
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="sectorOrIndustry">
+              <mat-radio-button class="pr-2 app-radio" value="1" [checked]="true">Security ID</mat-radio-button>
+              <mat-radio-button class="app-radio" value="2">Publication ID</mat-radio-button>
+            </mat-radio-group>
+            <div class="pr-2 pl-2">
+              <input type="text" class="app-text-box"
+                     placeholder="{{sectorOrIndustry === '1' ? 'Enter Ticker or Security ID' : 'Enter Publication ID'}}"/>
+            </div>
+            <!--<span class="pr-3 pl-2 ">or </span>-->
+            <!--<mat-checkbox class="app-check-box">Publication ID</mat-checkbox>-->
+            <button mat-raised-button class="app-button ml-lg-2" (click)="go()"> GO </button>
+          </div>
+        </div>
+        <ag-grid-angular
+          class="{{appliedThemeClassOnTable}}"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="defaultColDef"
+          [floatingFilter]="true"
+          [animateRows]="true"
+          [pagination]="true"
+          [paginationPageSize]="selectedRowsPerPage"
+          (gridReady)="onGridReady($event)"
+          (firstDataRendered)="onFirstDataRendered($event)">
+        </ag-grid-angular>
+      </app-card>
+    </div>
+  </div>
+</div>

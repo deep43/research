@@ -3,6 +3,9 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {AgGridNg2} from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 import {BsModalService, ModalDirective} from 'ngx-bootstrap/modal';
+import {ToastrService} from 'ngx-toastr';
+import {MessageService} from '../../shared/shared-service';
+import {Subscription} from 'rxjs';
 
 interface Partner {
   id?: number;
@@ -20,6 +23,22 @@ interface Partner {
 export class PartnersComponent implements OnInit {
   @ViewChild('agGrid') agGrid: AgGridNg2;
   @ViewChild('modal') modal: ModalDirective;
+
+
+  leftTitle = 'All Sectors';
+  rightTitle = 'Selected Sectors';
+  leftItems = [
+    {name: 'Mapping Tree', id: 1, selected: false},
+    {name: 'Canadian Monthly Reports', id: 2, selected: false},
+    {name: 'Consumer Discretionary', id: 3, selected: false},
+    {name: 'Consumer Stapes', id: 4, selected: false},
+    {name: 'Enegry', id: 5, selected: false},
+    {name: 'Financials', id: 6, selected: false},
+    {name: 'Health Care', id: 7, selected: false},
+    {name: 'Industrials', id: 8, selected: false},
+    {name: 'Information', id: 9, selected: false},
+  ];
+  rightItems = [];
 
   selectedPartner: Partner = {};
 
@@ -61,6 +80,7 @@ export class PartnersComponent implements OnInit {
     filter: true,
     resizable: true
   };
+  gridApis = [];
   gridApi;
   gridColumnApi;
   rowData: Partner[] = [
@@ -72,8 +92,17 @@ export class PartnersComponent implements OnInit {
   selectedRowsPerPage = 13;
   customFlag = true;
   active = true;
+  subscription: Subscription;
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, private toastr: ToastrService,
+              private messageService: MessageService) {
+    this.subscription = this.messageService.getMessage().subscribe(message => {
+      setTimeout(() => {
+        this.gridApis.map((api) => {
+          api.sizeColumnsToFit();
+        });
+      }, 500);
+    });
   }
 
   openModal() {
@@ -96,6 +125,17 @@ export class PartnersComponent implements OnInit {
   }
 
   savePartner() {
+
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>' +
+      'Partner information created Successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
+
     if (!this.selectedPartner.id) {
       this.selectedPartner.id = this.rowData.length;
       this.rowData = [this.selectedPartner, ...this.rowData];
@@ -104,19 +144,24 @@ export class PartnersComponent implements OnInit {
       return;
     }
 
-    this.rowData = this.rowData.map((row) => {
-      if (row.id === this.selectedPartner.id) {
-        row = this.selectedPartner;
+  }
+
+
+  upload() {
+
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>' + 'uploaded documents Successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
       }
-
-      return row;
-    });
-
-    this.closeModal();
+    );
   }
 
   onGridReady(params) {
     this.gridApi = params.api;
+    this.gridApis.push(params.api);
     this.gridColumnApi = params.columnApi;
   }
 
@@ -127,5 +172,16 @@ export class PartnersComponent implements OnInit {
   ngOnInit() {
   }
 
+  go() {
+    this.toastr.success('<span>' +
+      '<i class="icofont icofont-check-circled pr-2"></i>'
+      + 'Documents uploaded Successfully' +
+      '</span>', '',
+      {
+        closeButton: true,
+        enableHtml: true
+      }
+    );
+  }
 }
 

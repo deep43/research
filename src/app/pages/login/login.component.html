@@ -1,0 +1,27 @@
+<div class="login-page">
+  <div class="container">
+    <div class="row main-row">
+      <div class="col-12 col-sm-6 col-md-5 col-lg-5">
+        <div class="text-center login-logo">
+          <img src="/assets/dashboard_images/RA_logomark_white.png">
+        </div>
+        <app-card [title]="''" [noActions]="true" class="table-card">
+          <h3 class="text-center">Research Admin</h3>
+          <div class="text-center mt-lg-3 mb-2">
+            <span>Sign In to Your Account</span>
+          </div>
+          <mat-form-field class="example-full-width mt-2">
+            <input matInput placeholder="Username">
+          </mat-form-field>
+          <mat-form-field class="example-full-width mt-2">
+            <input matInput placeholder="Password">
+          </mat-form-field>
+
+          <div class="login-btn-row mt-lg-4">
+            <button mat-raised-button (click)="onSubmit()">LOGIN</button>
+          </div>
+        </app-card>
+      </div>
+    </div>
+  </div>
+</div>
