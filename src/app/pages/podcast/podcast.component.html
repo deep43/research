@@ -4,7 +4,16 @@
       <app-card [title]="'Create New Podcast'" [noActions]="true" class="table-card detailed-card">
         <div class="row">
           <div class="col-12 col-sm-6 col-md-6">
-            <div class="row mt-2 center-h">
+            <div class="row center-h not-visible">
+              <div class="col-5 align-right">
+                Dummy
+              </div>
+              <div class="col-7 pl-0">
+                <input type="text" class="app-text-box"
+                       placeholder=""/>
+              </div>
+            </div>
+            <div class="row center-h dummy-padding">
               <div class="col-5 align-right">
                 Headline
               </div>
@@ -27,9 +36,8 @@
                 Description
               </div>
               <div class="col-7 pl-0">
-                  <textarea type="text" class="app-text-box" rows="4"
-                            placeholder="Keywords (Analysts, tickers, company names, and any other Relevant Keywords.">
-                  </textarea>
+                  <textarea type="text" class="app-text-box" rows="4" value=""
+                            placeholder="Keywords (Analysts, tickers, company names, and any other Relevant Keywords."></textarea>
               </div>
             </div>
             <div class="row mt-2 center-h">
@@ -113,9 +121,9 @@
 
         <div class="row mt-lg-4 ">
           <div class="col-12 align-right">
+            <button mat-button class="app-cancel-button mr-2" (click)="newPodcastModal.hide()">Cancel</button>
             <button mat-raised-button class="app-button mr-2">Preview</button>
             <button mat-raised-button class="app-button mr-2" (click)="savePodCast()">Save</button>
-            <button mat-button class="app-cancel-button mr-2" (click)="newPodcastModal.hide()">Cancel</button>
           </div>
         </div>
       </app-card>

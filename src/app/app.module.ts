@@ -35,6 +35,7 @@ import {SelectAndMoveComponent} from './component/select-and-move/select-and-mov
 import {LoginComponent} from './pages/login/login.component';
 import {ToastrModule} from 'ngx-toastr';
 import { FirstTableComponent } from './component/first-table/first-table.component';
+import {NgxUiLoaderModule} from 'ngx-ui-loader';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,13 @@ import { FirstTableComponent } from './component/first-table/first-table.compone
     ModalModule.forRoot(),
     SharedModule,
     AppRoutingModule,
+    NgxUiLoaderModule.forRoot({
+      fgsSize: 0,
+      fgsColor: 'rgba(203, 203, 203, 0.6)',
+      pbThickness: 5,
+      pbColor: '#8b1d41',
+      overlayColor: 'rgba(203, 203, 203, 0.6)',
+    }),
     ToastrModule.forRoot() // ToastrModule added
   ],
   providers: [],

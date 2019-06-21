@@ -17,6 +17,7 @@ import * as _moment from 'moment';
 import {Moment} from 'moment';
 import {MessageService} from '../../shared/shared-service';
 import {Subscription} from 'rxjs';
+import {NgxUiLoaderService} from 'ngx-ui-loader';
 
 const moment = _moment;
 // See the Moment.js docs for the meaning of these formats:
@@ -54,14 +55,14 @@ export class HomepageComponent implements OnInit {
   @ViewChild('modal') modal: ModalDirective;
   params: any = {};
   columnDefs = [
-    {headerName: 'Analysis', field: 'analysis', width: 200, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
+    {headerName: 'Analyst', field: 'analysis', width: 100, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
     {headerName: 'Title', field: 'title', width: 200, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
     {headerName: 'Sectors', field: 'sectors', width: 200, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
-    {headerName: 'No of Pages', field: 'noOfPages', width: 200, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
+    {headerName: 'No of Pages', field: 'noOfPages', width: 100, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
     {
       headerName: 'Publication Category',
       field: 'publicationCategory',
-      width: 200,
+      width: 100,
       filter: 'agTextColumnFilter',
       pivot: true,
       suppressMovable: true
@@ -371,7 +372,8 @@ export class HomepageComponent implements OnInit {
   subscription: Subscription;
 
   constructor(private modalService: BsModalService,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private ngxService: NgxUiLoaderService) {
     this.subscription = this.messageService.getMessage().subscribe(message => {
       setTimeout(() => {
         this.gridApis.map((api) => {
@@ -383,7 +385,11 @@ export class HomepageComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.params.api.sizeColumnsToFit();
+    setTimeout(() => {
+      this.gridApis.map((api) => {
+        api.sizeColumnsToFit();
+      });
+    }, 500);
   }
 
   ngOnInit() {
@@ -404,6 +410,7 @@ export class HomepageComponent implements OnInit {
     categoryAxis.renderer.grid.template.location = 0;
     categoryAxis.renderer.cellStartLocation = 0.2;
     categoryAxis.renderer.cellEndLocation = 0.8;
+
     const that = this;
     categoryAxis.events.on('hit', function (ev) {
       that.modal.show();
@@ -453,7 +460,7 @@ export class HomepageComponent implements OnInit {
     chart.legend = new am4charts.Legend();
     chart.legend.position = 'top';
     chart.fontSize = 12;
-    chart.cursor = new am4charts.XYCursor();
+    // chart.cursor = new am4charts.XYCursor();
     this.chart = chart;
 
     let chart2 = am4core.create('chart2', am4charts.XYChart);
@@ -537,10 +544,12 @@ export class HomepageComponent implements OnInit {
     this.gridApis.push(params.api);
     this.gridColumnApi = params.columnApi;
 
-    window.addEventListener('resize', function () {
-      setTimeout(function () {
-        params.api.sizeColumnsToFit();
-      });
+    window.addEventListener('resize', () => {
+      setTimeout(() => {
+        this.gridApis.map((api) => {
+          api.sizeColumnsToFit();
+        });
+      }, 500);
     });
   }
 
@@ -558,7 +567,6 @@ export class HomepageComponent implements OnInit {
     if (event.target['value'] === 'Quarter') {
       this.chart.data = [...this.data1Quarter];
     }
-    // console.log(event.target.value);
   }
 
   chosenYearHandler(normalizedYear: Moment, datepicker: MatDatepicker<Moment>, date, close) {
@@ -572,7 +580,7 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>, date, dataName, data) {
+  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>, date, dataName, data, loaderID) {
     const ctrlValue = date['value'];
     ctrlValue.month(normalizedMonth.month());
     date.setValue(ctrlValue);
@@ -583,12 +591,16 @@ export class HomepageComponent implements OnInit {
     this.changeDPFormat(datepicker, 'MM/YYYY');
 
     datepicker.close();
-
-    if (dataName.indexOf('chart') < 0) {
-      this[dataName] = [...this.shuffle(data)];
-    } else {
-      this[dataName]['data'] = [...this.shuffle(data)];
-    }
+    this.ngxService.startLoader(loaderID); // start foreground spinner of the loader "loader-01" with 'default' taskId
+    // Stop the foreground loading after 5s
+    setTimeout(() => {
+      this.ngxService.stopLoader(loaderID); // stop foreground spinner of the loader "loader-01" with 'default' taskId
+      if (dataName.indexOf('chart') < 0) {
+        this[dataName] = [...this.shuffle(data)];
+      } else {
+        this[dataName]['data'] = [...this.shuffle(data)];
+      }
+    }, 500);
   }
 
   changeDPFormat(datepicker, format) {
@@ -597,12 +609,17 @@ export class HomepageComponent implements OnInit {
     datepicker._datepickerInput._dateFormats = d;
   }
 
-  changeQuarterSelection(dataName, data) {
-    if (dataName.indexOf('chart') < 0) {
-      this[dataName] = [...this.shuffle(data)];
-    } else {
-      this[dataName]['data'] = [...this.shuffle(data)];
-    }
+  changeQuarterSelection(dataName, data, loaderID) {
+    this.ngxService.startLoader(loaderID); // start foreground spinner of the loader "loader-01" with 'default' taskId
+    // Stop the foreground loading after 5s
+    setTimeout(() => {
+      this.ngxService.stopLoader(loaderID); // stop foreground spinner of the loader "loader-01" with 'default' taskId
+      if (dataName.indexOf('chart') < 0) {
+        this[dataName] = [...this.shuffle(data)];
+      } else {
+        this[dataName]['data'] = [...this.shuffle(data)];
+      }
+    }, 500);
   }
 
   changeQuarterOrMonth(datepicker: MatDatepicker<Moment>, quarter) {

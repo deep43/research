@@ -24,7 +24,7 @@
   </div>
 </div>
 
-<div class="modal fade" bsModal #modal="bs-modal"
+<div class="modal fade partners-modal" bsModal #modal="bs-modal"
      tabindex="-1" role="dialog" aria-labelledby="dialog-events-name">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -58,7 +58,7 @@
           <div class="col-4 pl-0 pr-0">
             <input type="text" class="app-text-box" [(ngModel)]="selectedPartner.footnote"/>
           </div>
-          <div class="col-2">
+          <div class="col-2 pt-1">
             Active:
             <mat-checkbox class="example-margin app-check-box mt-2 pl-2 " [(ngModel)]="active"></mat-checkbox>
           </div>
@@ -90,7 +90,7 @@
           <div class="col-3 align-right">
             User ID:
           </div>
-          <div class="col-2 pl-0 pr-0">
+          <div class="col-4 pl-0 pr-0">
             <input type="text" class="app-text-box" [(ngModel)]="selectedPartner.footnote"/>
           </div>
         </div>
@@ -98,7 +98,7 @@
           <div class="col-3 align-right">
             Password:
           </div>
-          <div class="col-2 pl-0 pr-0">
+          <div class="col-4 pl-0 pr-0">
             <input type="text" class="app-text-box" [(ngModel)]="selectedPartner.footnote"/>
           </div>
         </div>
@@ -106,7 +106,7 @@
           <div class="col-3 align-right">
             Folder/Path:
           </div>
-          <div class="col-2 pl-0 pr-0">
+          <div class="col-4 pl-0 pr-0">
             <input type="text" class="app-text-box" [(ngModel)]="selectedPartner.footnote"/>
           </div>
         </div>
@@ -118,7 +118,7 @@
           </div>
         </div>
         <div class="row mt-2">
-          <div class="col-12 align-col">
+          <div class="col-12 align-col partner-move">
             <app-select-and-move [leftItems]="leftItems"
                                  [rightItems]="rightItems"
                                  [leftTitle]="leftTitle"
@@ -165,7 +165,7 @@
       <div class="row mt-2 modal-action-row">
         <div class="col-3 align-right">
         </div>
-        <div class="col-9 pl-0">
+        <div class="col-9 align-right">
           <button mat-raised-button class="app-button" (click)="savePartner()">Save Partner</button>
         </div>
       </div>

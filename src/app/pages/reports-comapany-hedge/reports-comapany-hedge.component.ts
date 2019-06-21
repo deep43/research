@@ -40,43 +40,43 @@ export class ReportsComapanyHedgeComponent implements OnInit {
   };
 
   columnDefs = [
-    {headerName: 'Company', field: 'Company', width: 120, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
-    {headerName: 'Ticker', field: 'ticker', width: 120, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
-    {headerName: 'Exchange', field: 'exchange', width: 120, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
-    {headerName: '1a', field: 'a1', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '1b', field: 'b1', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '1c', field: 'c1', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '2a', field: 'a2', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '2b', field: 'b2', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '2c', field: 'c2', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '2d', field: 'd2', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '2e', field: 'e2', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '2f', field: 'f2', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '2g', field: 'g2', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '3a', field: 'a3', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '3b', field: 'b3', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '3c', field: 'c3', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '4a', field: 'a4', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '4b', field: 'b4', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '4c', field: 'c4', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '5a', field: 'a5', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '5b', field: 'b5', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '6a', field: 'a6', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '6b', field: 'b6', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '7a', field: 'a7', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '8a', field: 'a8', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '9a', field: 'a9', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '10a', field: 'a10', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '11a', field: 'a11', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '12a', field: 'a12', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '13a', field: 'a13', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: '14a', field: 'a14', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: 'cd15', field: '15cd', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: 'cd17', field: '17cd', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: 'cd38', field: '38cd', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: 'cd59', field: '59cd', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: 'Universe', field: 'universe', width: 60, filter: false, pivot: true, suppressMovable: true},
-    {headerName: 'status', field: 'status', width: 60, filter: false, pivot: true, suppressMovable: true},
+    {headerName: 'Company', field: 'Company', width: 15, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
+    {headerName: 'Ticker', field: 'ticker', width: 15, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
+    {headerName: 'Exchange', field: 'exchange', width: 15, filter: 'agTextColumnFilter', pivot: true, suppressMovable: true},
+    {headerName: '1a', field: 'a1', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '1b', field: 'b1', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '1c', field: 'c1', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '2a', field: 'a2', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '2b', field: 'b2', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '2c', field: 'c2', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '2d', field: 'd2', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '2e', field: 'e2', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '2f', field: 'f2', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '2g', field: 'g2', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '3a', field: 'a3', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '3b', field: 'b3', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '3c', field: 'c3', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '4a', field: 'a4', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '4b', field: 'b4', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '4c', field: 'c4', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '5a', field: 'a5', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '5b', field: 'b5', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '6a', field: 'a6', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '6b', field: 'b6', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '7a', field: 'a7', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '8a', field: 'a8', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '9a', field: 'a9', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '10a', field: 'a10', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '11a', field: 'a11', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '12a', field: 'a12', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '13a', field: 'a13', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: '14a', field: 'a14', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: 'cd15', field: '15cd', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: 'cd17', field: '17cd', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: 'cd38', field: '38cd', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: 'cd59', field: '59cd', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: 'Universe', field: 'universe', width: 5, filter: false, pivot: true, suppressMovable: true},
+    {headerName: 'status', field: 'status', width: 5, filter: false, pivot: true, suppressMovable: true},
   ];
 
   defaultColDef = {
@@ -1104,7 +1104,7 @@ export class ReportsComapanyHedgeComponent implements OnInit {
     this.subscription = this.messageService.getMessage().subscribe(message => {
       setTimeout(() => {
         this.gridApis.map((api) => {
-          // api.sizeColumnsToFit();
+          api.sizeColumnsToFit();
         });
       }, 500);
     });
@@ -1156,7 +1156,7 @@ export class ReportsComapanyHedgeComponent implements OnInit {
   }
 
   onFirstDataRendered(params) {
-    // params.api.sizeColumnsToFit();
+    params.api.sizeColumnsToFit();
   }
 
   ngOnInit() {

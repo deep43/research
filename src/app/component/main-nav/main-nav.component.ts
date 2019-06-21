@@ -68,57 +68,57 @@ export class MainNavComponent {
   slideColor = 'blue';
 
   /* menuItems = [
-     {id: '/', icon: 'feather icon-bar-chart', clicked: false, link: true, title: 'New Item New Item'},
-     {id: '/images', icon: 'feather icon-image', clicked: false, link: true, title: 'New Item New Item'},
-     {id: '/partners', icon: 'feather icon-map', clicked: false, link: true, title: 'New Item New Item'},
-     {id: '/podcast', icon: 'feather icon-grid', clicked: false, link: true, title: 'New Item New Item'},
+     {id: '/', icon: 'main-icon feather icon-bar-chart', clicked: false, link: true, title: 'New Item New Item'},
+     {id: '/images', icon: 'main-icon feather icon-image', clicked: false, link: true, title: 'New Item New Item'},
+     {id: '/partners', icon: 'main-icon feather icon-map', clicked: false, link: true, title: 'New Item New Item'},
+     {id: '/podcast', icon: 'main-icon feather icon-grid', clicked: false, link: true, title: 'New Item New Item'},
      {
-       id: '/client', icon: 'feather icon-briefcase', clicked: false, title: 'New Item New Item', submenu: true,
+       id: '/client', icon: 'main-icon feather icon-briefcase', clicked: false, title: 'New Item New Item', submenu: true,
        links: [
-         {id: '/client', icon: 'feather icon-chevrons-right', clicked: false, searchable: false, title: 'New Item New Item'},
-         {id: '/client', icon: 'feather icon-chevrons-right', clicked: false, searchable: false, title: 'New Item New Item'},
-         {id: '/client', icon: 'feather icon-chevrons-right', clicked: false, searchable: false, title: 'New Item New Item'},
+         {id: '/client', icon: 'main-icon feather icon-chevrons-right', clicked: false, searchable: false, title: 'New Item New Item'},
+         {id: '/client', icon: 'main-icon feather icon-chevrons-right', clicked: false, searchable: false, title: 'New Item New Item'},
+         {id: '/client', icon: 'main-icon feather icon-chevrons-right', clicked: false, searchable: false, title: 'New Item New Item'},
        ]
      },
      {
-       id: '/symbol', icon: 'feather icon-trending-up', clicked: false, title: 'New Item New Item', submenu: true,
+       id: '/symbol', icon: 'main-icon feather icon-trending-up', clicked: false, title: 'New Item New Item', submenu: true,
        links: [
-         {id: '/symbol', icon: 'feather icon-chevrons-right', clicked: false, searchable: false, title: 'New Item New Item'},
-         {id: '/symbol', icon: 'feather icon-chevrons-right', clicked: false, searchable: false, title: 'New Item New Item'},
-         {id: '/symbol', icon: 'feather icon-chevrons-right', clicked: false, searchable: false, title: 'New Item New Item'},
+         {id: '/symbol', icon: 'main-icon feather icon-chevrons-right', clicked: false, searchable: false, title: 'New Item New Item'},
+         {id: '/symbol', icon: 'main-icon feather icon-chevrons-right', clicked: false, searchable: false, title: 'New Item New Item'},
+         {id: '/symbol', icon: 'main-icon feather icon-chevrons-right', clicked: false, searchable: false, title: 'New Item New Item'},
        ]
      },
      /!*{
-       id: '/sector', icon: 'feather icon-box', clicked: true, submenuWithSearch: true, title: 'Search Sector',
+       id: '/sector', icon: 'main-icon feather icon-box', clicked: true, submenuWithSearch: true, title: 'Search Sector',
        links: [
          {id: '/sector', icon: '', clicked: true, searchable: false, title: 'Trading'},
          {id: '/sector', icon: '', clicked: true, searchable: false, title: 'Banking'},
          {id: '/sector', icon: '', clicked: true, searchable: false, title: 'Health care'},
-         {id: '/sector', icon: 'feather icon-plus', clicked: true, searchable: false, title: 'Add New'}
+         {id: '/sector', icon: 'main-icon feather icon-plus', clicked: true, searchable: false, title: 'Add New'}
        ]
      },
      {
-       id: '/preset', icon: 'feather icon-server', clicked: true, submenuWithSearch: true, title: 'Search Preset',
+       id: '/preset', icon: 'main-icon feather icon-server', clicked: true, submenuWithSearch: true, title: 'Search Preset',
        links: [
          {id: '/preset', icon: '', clicked: true, searchable: false, title: 'Barrick gold'},
          {id: '/preset', icon: '', clicked: true, searchable: false, title: 'Goldman Sachs'},
          {id: '/preset', icon: '', clicked: true, searchable: false, title: 'FxExchange'},
-         {id: '/preset', icon: 'feather icon-plus', clicked: true, searchable: false, title: 'Add New'}
+         {id: '/preset', icon: 'main-icon feather icon-plus', clicked: true, searchable: false, title: 'Add New'}
        ]
      }*!/
    ];*/
 
   menuItems = [
-    {id: '/', icon: 'feather icon-home', clicked: false, link: true, title: 'Home'},
+    {id: '/', icon: 'main-icon feather icon-home', clicked: false, link: true, title: 'Home'},
     {
-      id: '/podcast', icon: 'feather icon-play-circle', clicked: false, submenu: true, title: 'Podcast',
+      id: '/podcast', icon: 'main-icon feather icon-play-circle', clicked: false, submenu: true, title: 'Podcast',
       links: [
         {id: '/podcast/new', icon: 'feather icon-chevrons-right', clicked: false, searchable: false, title: 'New Podcast'},
         {id: '/podcast/listing', icon: 'feather icon-chevrons-right', clicked: false, searchable: false, title: 'Podcast Listing'},
       ]
     },
     {
-      id: '/administration', icon: 'feather icon-shield', clicked: false, submenu: true, title: 'Administration',
+      id: '/administration', icon: 'main-icon feather icon-shield', clicked: false, submenu: true, title: 'Administration',
       links: [
         {id: '/administration/users', icon: 'feather icon-chevrons-right', clicked: false, searchable: false, title: 'Users'},
         {id: '/administration/company', icon: 'feather icon-chevrons-right', clicked: false, searchable: false, title: 'Company'},
@@ -127,7 +127,7 @@ export class MainNavComponent {
       ]
     },
     {
-      id: '/reports', icon: 'feather icon-bar-chart', clicked: false, submenu: true, title: 'Reports',
+      id: '/reports', icon: 'main-icon feather icon-bar-chart', clicked: false, submenu: true, title: 'Reports',
       links: [
         {
           id: '/reports/monthlystock', icon: 'feather icon-chevrons-right',
@@ -142,10 +142,10 @@ export class MainNavComponent {
         },
       ]
     },
-    {id: '/compliance', icon: 'feather icon-edit', clicked: false, link: true, title: 'Compliance Hedge Clauses'},
-    {id: '/replacepdf', icon: 'feather icon-repeat', clicked: false, link: true, title: 'Replace PDF on Research'},
-    {id: '/restricted', icon: 'feather icon-flag', clicked: false, link: true, title: 'Restricted Flag Override'},
-    {id: '/sectorratings', icon: 'feather icon-award', clicked: false, link: true, title: 'Sector and Ratings'},
+    {id: '/compliance', icon: 'main-icon feather icon-edit', clicked: false, link: true, title: 'Compliance Hedge Clauses'},
+    {id: '/replacepdf', icon: 'main-icon feather icon-repeat', clicked: false, link: true, title: 'Replace PDF on Research'},
+    {id: '/restricted', icon: 'main-icon feather icon-flag', clicked: false, link: true, title: 'Restricted Flag Override'},
+    {id: '/sectorratings', icon: 'main-icon feather icon-award', clicked: false, link: true, title: 'Sector and Ratings'},
   ];
   /* menuItems = Array.from({length: 10}, (_, i) => {
      return {id: i === 0 ? '/' : '/ee', icon: 'feather icon-bar-chart', clicked: true, link: true, title: `Nav Item New Item  ${i + 1}`};
@@ -323,7 +323,10 @@ export class MainNavComponent {
     const clicked = submenu.clicked;
     if (!clicked) {
       this.menuItems = this.menuItems.map((menu) => {
-        // menu.clicked = false;
+
+        if (!this.showFullNavigation) {
+          menu.clicked = false;
+        }
         if (menu.links) {
           menu.links = menu.links.map((submenuItem) => {
             submenuItem.clicked = false;

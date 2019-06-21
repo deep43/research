@@ -20,28 +20,36 @@
   src: url('/assets/fonts/whitneycondensed-book.otf'), url('/assets/fonts/whitneycondensed-book.woff');
 }
 
-body, html, .mat-sidenav-container{
+body, html, .mat-sidenav-container {
   font-family: WhitneyRegular !important;
 }
 
-.ag-theme-balham .ag-header{
+body{
+  min-width: 1180px !important;
+}
+
+.ag-theme-balham .ag-header {
   font-family: WhitneyRegular !important;
   font-weight: 500;
 }
-.ag-theme-balham{
+
+.ag-theme-balham {
   font-family: WhitneyRegular !important;
 }
-.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab{
+
+.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
   font-family: WhitneySemibold !important;
   font-weight: 600 !important;
 }
 
-.mat-radio-button{
+.mat-radio-button {
   font-family: WhitneyRegular !important;
 }
-.mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6{
+
+.mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6 {
   font-family: WhitneyRegular !important;
 }
+
 .app-page {
   margin: 40px 20px 20px 50px !important;
   transition: margin-left 0.5s ease-in-out;
@@ -50,6 +58,7 @@ body, html, .mat-sidenav-container{
 .over-breadcrumb-section {
   margin-top: -40px;
 }
+
 /*.router-container{
    position: relative;
    width: 100%;
@@ -79,7 +88,7 @@ button:focus {
   color: $CIBCTextGrey !important;
   font-family: WhitneyRegular !important;
 
-  .mat-card-title{
+  .mat-card-title {
     font-weight: 600;
   }
 }
@@ -120,7 +129,7 @@ button:focus {
   }
 }
 
-.modal-content{
+.modal-content {
   border: none;
 }
 
@@ -158,10 +167,18 @@ button:focus {
     font-size: 13px;
   }
 
-  select{
+  select {
     border-color: $StrokeGrey;
 
-    &:focus{
+    &:focus {
+      box-shadow: 0 0 0 2.5px #BBBCBC;
+      outline: none;
+      border: none;
+    }
+  }
+
+  textarea {
+    &:focus {
       box-shadow: 0 0 0 2.5px #BBBCBC;
       outline: none;
       border: none;
@@ -174,7 +191,7 @@ button:focus {
     border: 1px solid $StrokeGrey;
     padding: 4px 5px;
 
-    &:focus{
+    &:focus {
       box-shadow: 0 0 0 1.5px #BBBCBC;
       outline: none;
     }
@@ -191,14 +208,14 @@ button:focus {
       font-weight: 600;
       box-shadow: none !important;
 
-      &:hover{
+      &:hover {
         background: $CIBCRed;
         color: white;
       }
     }
   }
 
-  .app-cancel-button{
+  .app-cancel-button {
     //border: 1px solid $CIBCRed;
     //color: $CIBCRed !important;
     padding: 0 24px;
@@ -301,40 +318,62 @@ button:focus {
 }
 
 .section-heading {
-  padding: 6px 12px;
-  color: $CIBCRed;
+  margin: 0 12px;
+  color: #424242;
+  font-weight: 600;
+  font-size: 17px;
+  padding: 6px 0;
   // border-radius: 2px;
   z-index: 10;
+  max-width: 97%;
   border-bottom: 1px solid $CIBCHeadingBorder !important;
 }
 
 .ag-table-btn {
-  background: #c1c1c180;
+  background: #e3e3e3;
   font-size: 12px;
   padding: 0.1rem 0.5rem;
   margin-bottom: 3px;
 }
-.ag-table-input{
+
+.ag-table-input {
   margin-top: 3px;
   height: 20px;
+
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
 }
 
-.app-warning-text{
+.ag-cell-focus{
+  border-color: $CIBCRed !important;
+}
+
+.ag-row-selected{
+  background-color: $CIBCButtonColor !important;
+}
+
+.ag-icon-checkbox-checked{
+  //background-image: url("assets/dashboard_images/Selected_Selected.svg") !important;
+}
+
+.app-warning-text {
   color: $CIBCRed;
 }
 
-.hidden{
+.hidden {
   display: none !important;
 }
 
-.detailed-card{
-  .mat-card-header{
+.detailed-card {
+  .mat-card-header {
     border-bottom: 1px solid $CIBCHeadingBorder !important;
     margin-bottom: 20px;
   }
 }
 
-.mat-checkbox-layout, .mat-radio-label{
+.mat-checkbox-layout, .mat-radio-label {
   margin-bottom: 0 !important;
 }
 
@@ -342,7 +381,7 @@ button:focus {
   position: relative;
   overflow: hidden;
   margin: 0 0 6px;
-  padding: 10px 40% 0 40% !important;
+  padding: 10px 50px 0 50px !important;
   width: 100vw !important;
   border-radius: 3px 3px 3px 3px;
   background-position: 15px center;
@@ -352,15 +391,15 @@ button:focus {
   color: $CIBCTextGrey !important;
   font-size: 14px;
 
-  .toast-close-button{
+  .toast-close-button {
     padding-top: 3px;
   }
 
-  .toast-message{
+  .toast-message {
     text-align: center;
   }
 
-  i{
+  i {
     color: green;
     font-weight: bold;
   }
@@ -368,14 +407,23 @@ button:focus {
   &.toast-success {
     background-color: #DAEAEF;
     background-image: none !important;
+    border-radius: 0;
   }
 
-  .toast-title{
+  .toast-title {
     display: none;
   }
 }
 
-.toast-top-right{
+.toast-top-right {
   top: 0 !important;
   right: 0 !important;
 }
+
+.modal.show .modal-dialog {
+  height: 97vh !important;
+  display: flex;
+  align-items: center;
+  margin: 0 auto !important;
+}
+

@@ -25,13 +25,13 @@ import {ClickOutsideModule} from 'ng-click-outside';
     FormsModule,
     ModalModule.forRoot(),
     AgGridModule.withComponents([]),
-    ClickOutsideModule
+    ClickOutsideModule,
   ],
   exports: [
     CustomCardComponent,
   ],
   declarations: [
-    CustomCardComponent,
+    CustomCardComponent
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
@@ -162,6 +162,15 @@ export class FirstTableComponent implements OnInit {
     });
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    setTimeout(() => {
+      this.gridApis.map((api) => {
+        api.sizeColumnsToFit();
+      });
+    }, 500);
+  }
+
   ngOnInit() {
   }
 
@@ -170,11 +179,13 @@ export class FirstTableComponent implements OnInit {
     this.gridApis.push(params.api);
     this.gridColumnApi = params.columnApi;
 
-    /*window.addEventListener('resize', function () {
-      setTimeout(function () {
-        params.api.sizeColumnsToFit();
-      });
-    });*/
+    window.addEventListener('resize', () => {
+      setTimeout(() => {
+        this.gridApis.map((api) => {
+          api.sizeColumnsToFit();
+        });
+      }, 500);
+    });
   }
 
   onFirstDataRendered(params) {

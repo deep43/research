@@ -1,5 +1,23 @@
-::ng-deep .app-check-box{
-  .mat-checkbox-layout{
-    margin-bottom: 0 !important;
+::ng-deep {
+  .partners-modal {
+    &.modal.show .modal-dialog {
+      height: 140vh !important;
+    }
+  }
+
+  .partner-move {
+    .left-col {
+      padding-right: 0;
+    }
+    .right-col {
+      padding-left: 0;
+    }
+  }
+
+  .app-check-box {
+    .mat-checkbox-layout {
+      margin-bottom: 0 !important;
+    }
+
   }
 }

@@ -419,6 +419,9 @@ i {
       }
       .submenu-link-span{
         padding-left: 13px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
     }
   }
@@ -433,6 +436,7 @@ i {
         transition: color 0.3s, font-weight 0.3s, padding 0.3s;
         i{
           padding-left: 3px;
+          padding-top: 3px;
           transition: font-weight 0.3s;
         }
 
@@ -450,7 +454,13 @@ i {
     z-index: 9;
     // padding: 10px;
     color: $CIBCBlack;
+    .main-icon{
+      color: $CIBCRed;
+    }
     &:hover {
+      .main-icon{
+        color: white;
+      }
       // @extend .tab-active;
       z-index: 10;
       .toggle-link {
@@ -462,6 +472,9 @@ i {
       }
     }
     &.active {
+      .main-icon{
+        color: white;
+      }
       //@extend .tab-active;
       z-index: 10;
       .menu-link {

@@ -26,7 +26,7 @@
 
 <div class="modal fade" bsModal #modal="bs-modal"
      tabindex="-1" role="dialog" aria-labelledby="dialog-events-name">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title pull-left">{{modalTitle}}</h5>
@@ -36,54 +36,54 @@
       </div>
       <div class="modal-body">
         <div class="row mt-2">
-          <div class="col-2 align-right">
+          <div class="col-4 align-right">
             Custom Flag:
           </div>
-          <div class="col-1 pl-0 pr-0">
+          <div class="col-2 pl-0 pr-0">
             <mat-checkbox class="example-margin app-check-box" [(ngModel)]="customFlag"></mat-checkbox>
           </div>
-          <div class="col-2">
+          <div class="col-4">
             Active:
             <mat-checkbox class="example-margin app-check-box p-t-3 pl-2" [(ngModel)]="active"></mat-checkbox>
           </div>
         </div>
         <div class="row mt-2">
-          <div class="col-2 align-right">
+          <div class="col-4 align-right">
             Footnote ID:
           </div>
-          <div class="col-2 pl-0 pr-0">
+          <div class="col-6 pl-0 pr-0">
             <input type="text" class="app-text-box" [(ngModel)]="selectedClause.footnote"/>
           </div>
         </div>
         <div class="row mt-2">
-          <div class="col-2 align-right">
+          <div class="col-4 align-right">
             Short Description:
           </div>
-          <div class="col-7 pl-0">
+          <div class="col-6 pl-0  pr-0">
             <input type="text" class="app-text-box" [(ngModel)]="selectedClause.shortDesc"/>
           </div>
         </div>
         <div class="row mt-2">
-          <div class="col-2 align-right">
+          <div class="col-4 align-right">
             IB Relationship
           </div>
-          <div class="col-1 pl-0">
+          <div class="col-2 pl-0  pr-0">
             <mat-checkbox class="example-margin app-check-box" [(ngModel)]="customFlag"></mat-checkbox>
           </div>
         </div>
         <div class="row mt-2">
-          <div class="col-2 align-right">
+          <div class="col-4 align-right">
             Text
           </div>
-          <div class="col-7 pl-0">
+          <div class="col-6 pl-0 pr-0">
             <textarea type="text" class="form-control" rows="5" ></textarea>
           </div>
         </div>
       </div>
       <div class="row mt-2 modal-action-row">
-        <div class="col-2 align-right">
+        <div class="col-4 align-right">
         </div>
-        <div class="col-7 pl-0 align-right">
+        <div class="col-6 pl-0  pr-0 align-right">
           <button mat-raised-button class="app-button" (click)="saveFootnote()">Save</button>
         </div>
       </div>

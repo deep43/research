@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'Research';
 
   constructor(private router: Router) {
-    // this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/login');
   }
 
   public getRouterOutletState(outlet) {

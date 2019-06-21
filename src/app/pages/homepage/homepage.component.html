@@ -71,12 +71,12 @@
             <mat-datepicker #dp2
                             startView="multi-year"
                             (yearSelected)="chosenYearHandler($event, dp2, date2, quarterOrMonth2 === '1' )"
-                            (monthSelected)="chosenMonthHandler($event, dp2, date2, 'chart', data1Month)"
+                            (monthSelected)="chosenMonthHandler($event, dp2, date2, 'chart', data1Month, 'loader-01')"
                             panelClass="example-month-picker">
             </mat-datepicker>
           </mat-form-field>
           <select class="form-control form-control-sm ml-3 table-select"
-                  (change)="changeQuarterSelection( 'chart', data1Month)"
+                  (change)="changeQuarterSelection( 'chart', data1Month, 'loader-01')"
                   [ngClass]="{'disabled': quarterOrMonth2 === '2'}">
             <option>Q1</option>
             <option>Q2</option>
@@ -86,8 +86,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 demo-square">
+        <div class="col-12 demo-square" style="position: relative">
           <div id="activity-comission" style="width: 100%;" [style.height]="height"></div>
+          <ngx-ui-loader [loaderId]="'loader-01'"></ngx-ui-loader>
         </div>
       </div>
     </app-card>
@@ -109,12 +110,12 @@
             <mat-datepicker #dp1
                             startView="multi-year"
                             (yearSelected)="chosenYearHandler($event, dp1, date1, quarterOrMonth3 === '1' )"
-                            (monthSelected)="chosenMonthHandler($event, dp1, date1, 'chart2', data2Quarter)"
+                            (monthSelected)="chosenMonthHandler($event, dp1, date1, 'chart2', data2Quarter, 'loader-02')"
                             panelClass="example-month-picker">
             </mat-datepicker>
           </mat-form-field>
           <select class="form-control form-control-sm ml-3 table-select"
-                  (change)="changeQuarterSelection( 'chart2', data2Quarter)"
+                  (change)="changeQuarterSelection( 'chart2', data2Quarter, 'loader-02')"
                   [ngClass]="{'disabled': quarterOrMonth3 === '2'}">
             <option>Q1</option>
             <option>Q2</option>
@@ -124,8 +125,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 demo-square">
+        <div class="col-12 demo-square" style="position: relative">
           <div id="chart2" style="width: 100%;" [style.height]="height"></div>
+          <ngx-ui-loader [loaderId]="'loader-02'"></ngx-ui-loader>
         </div>
       </div>
     </app-card>

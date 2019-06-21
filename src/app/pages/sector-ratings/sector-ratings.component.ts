@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
 import {BsModalService, ModalDirective} from 'ngx-bootstrap/modal';
 import {AgGridNg2} from 'ag-grid-angular';
 import {ToastrService} from 'ngx-toastr';
@@ -24,7 +24,7 @@ interface Ratings {
   styleUrls: ['./sector-ratings.component.scss']
 })
 
-export class SectorRatingsComponent implements OnInit {
+export class SectorRatingsComponent implements OnInit, AfterViewChecked {
   @ViewChild('agGrid') agGrid: AgGridNg2;
   @ViewChild('modal') modal: ModalDirective;
   @ViewChild('deleteModal') deleteModal: ModalDirective;
@@ -248,8 +248,17 @@ export class SectorRatingsComponent implements OnInit {
         this.gridApis.map((api) => {
           api.sizeColumnsToFit();
         });
-      }, 500);
+      }, 500, true);
     });
+  }
+
+  ngAfterViewChecked() {
+    /*this.gridApis.map((api) => {
+      api.sizeColumnsToFit();
+    });*/
+    /*setTimeout(() => {
+
+    }, 500);*/
   }
 
   onGridReady(params) {
@@ -264,7 +273,7 @@ export class SectorRatingsComponent implements OnInit {
       this.gridApis.map((api) => {
         api.sizeColumnsToFit();
       });
-    }, 500);
+    }, 500, true);
   }
 
   openPublishModal() {
